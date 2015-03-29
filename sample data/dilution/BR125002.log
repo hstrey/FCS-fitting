@@ -1,182 +1,166 @@
 Color: B
 [[Model]]
-    noise
-[[Fit Statistics]]
-    # function evals   = 112
-    # data points      = 155
-    # variables        = 3
-    chi-square         = 0.001
-    reduced chi-square = 0.000
-[[Variables]]
-    a:   -3.5070e-13 +/- 8.38e-07 (239001639.43%) (init= 1e-05)
-    b:    1.8013e-06 +/- 6.19e-07 (34.39%) (init= 0)
-    p:    0.84577317 +/- 0.146007 (17.26%) (init= 0.33)
-    tc:   5.946592e-05 (fixed)
-[[Correlations]] (unreported correlations are <  0.100)
-    C(b, p)                      =  0.855 
-[[Model]]
-    g
+    Model(g)
 [[Fit Statistics]]
     # function evals   = 22
     # data points      = 155
     # variables        = 2
-    chi-square         = 262.988
-    reduced chi-square = 1.719
+    chi-square         = 191.832
+    reduced chi-square = 1.254
 [[Variables]]
     C:     13.2625 (fixed)
+    wxy:   0.31051772 +/- 0.002614 (0.84%) (init= 0.3)
     D:     419.01 (fixed)
-    wxy:   0.30822353 +/- 0.003657 (1.19%) (init= 0.3)
-    wz:    2.77934991 +/- 0.043784 (1.58%) (init= 1)
+    wz:    2.76740473 +/- 0.029292 (1.06%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.913 
 [[Model]]
-    g_t
+    Model(g_t)
 [[Fit Statistics]]
-    # function evals   = 71
+    # function evals   = 66
     # data points      = 155
     # variables        = 4
-    chi-square         = 217.458
-    reduced chi-square = 1.440
+    chi-square         = 138.610
+    reduced chi-square = 0.918
 [[Variables]]
     C:     13.2625 (fixed)
     D:     419.01 (fixed)
-    F:     0.16451348 +/- 0.026950 (16.38%) (init= 0.1)
-    tf:    9.4637e-06 +/- 3.41e-06 (36.04%) (init= 1e-07)
-    wxy:   0.33369712 +/- 0.008271 (2.48%) (init= 0.3)
-    wz:    2.61458496 +/- 0.056511 (2.16%) (init= 1)
+    F:     0.15758390 +/- 0.018498 (11.74%) (init= 0.1)
+    wxy:   0.33214381 +/- 0.005254 (1.58%) (init= 0.3)
+    tf:    9.7871e-06 +/- 2.51e-06 (25.60%) (init= 1e-07)
+    wz:    2.62958231 +/- 0.035543 (1.35%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(F, wxy)                    =  0.746 
-    C(tf, wxy)                   =  0.694 
-    C(F, tf)                     =  0.291 
+    C(wxy, wz)                   = -0.928 
+    C(wxy, tf)                   =  0.693 
+    C(F, wxy)                    =  0.662 
+    C(F, wz)                     = -0.578 
+    C(tf, wz)                    = -0.513 
+    C(F, tf)                     =  0.159 
 [[Model]]
-    g_n
+    Model(g_n)
 [[Fit Statistics]]
     # function evals   = 16
     # data points      = 155
     # variables        = 2
-    chi-square         = 309.135
-    reduced chi-square = 2.020
+    chi-square         = 239.731
+    reduced chi-square = 1.567
 [[Variables]]
-    C:          13.2625 (fixed)
-    D:          419.01 (fixed)
     a:          0.522 (fixed)
+    C:          13.2625 (fixed)
+    r0:         0.12055326 +/- 0.001088 (0.90%) (init= 0.15)
+    D:          419.01 (fixed)
     lambdaem:   0.519 (fixed)
+    w0:         0.27663355 +/- 0.004751 (1.72%) (init= 0.26)
     lambdaex:   0.488 (fixed)
     n:          1.33 (fixed)
-    r0:         0.12093717 +/- 0.001556 (1.29%) (init= 0.15)
-    w0:         0.27289065 +/- 0.006474 (2.37%) (init= 0.26)
 [[Correlations]] (unreported correlations are <  0.100)
+    C(r0, w0)                    = -0.906 
 [[Model]]
-    g_nt
+    Model(g_nt)
 [[Fit Statistics]]
     # function evals   = 106
     # data points      = 155
     # variables        = 4
-    chi-square         = 260.155
-    reduced chi-square = 1.723
+    chi-square         = 180.132
+    reduced chi-square = 1.193
 [[Variables]]
-    C:          13.2625 (fixed)
-    D:          419.01 (fixed)
-    F:          0.25530368 +/- 0.049820 (19.51%) (init= 0.1645135)
     a:          0.522 (fixed)
+    C:          13.2625 (fixed)
+    r0:         0.10915230 +/- 0.002724 (2.50%) (init= 0.1205533)
+    D:          419.01 (fixed)
+    F:          0.24480158 +/- 0.035795 (14.62%) (init= 0.1575839)
     lambdaem:   0.519 (fixed)
+    w0:         0.35992845 +/- 0.018213 (5.06%) (init= 0.2766336)
+    tf:         2.3532e-05 +/- 4.30e-06 (18.27%) (init= 9.787123e-06)
     lambdaex:   0.488 (fixed)
     n:          1.33 (fixed)
-    r0:         0.10816505 +/- 0.004040 (3.74%) (init= 0.1209372)
-    tf:         2.1868e-05 +/- 5.51e-06 (25.20%) (init= 9.463726e-06)
-    w0:         0.36350081 +/- 0.025977 (7.15%) (init= 0.2728907)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(F, w0)                     =  0.956 
-    C(tf, w0)                    =  0.762 
-    C(F, tf)                     =  0.704 
+    C(r0, w0)                    = -0.955 
+    C(F, w0)                     =  0.955 
+    C(r0, F)                     = -0.875 
+    C(w0, tf)                    =  0.770 
+    C(F, tf)                     =  0.691 
+    C(r0, tf)                    = -0.615 
 Color: R
 [[Model]]
-    noise
-[[Fit Statistics]]
-    # function evals   = 211
-    # data points      = 155
-    # variables        = 3
-    chi-square         = 0.000
-    reduced chi-square = 0.000
-[[Variables]]
-    a:    2.3401e-13 +/- 7.94e-08 (33946779.33%) (init= 1e-05)
-    b:    2.0977e-07 +/- 5.03e-08 (23.98%) (init= 0)
-    p:    0.84422728 +/- 0.132305 (15.67%) (init= 0.33)
-    tc:   0.0001043566 (fixed)
-[[Correlations]] (unreported correlations are <  0.100)
-    C(a, p)                      =  0.987 
-    C(a, b)                      =  0.837 
-    C(b, p)                      =  0.742 
-[[Model]]
-    g
+    Model(g)
 [[Fit Statistics]]
     # function evals   = 22
     # data points      = 155
     # variables        = 2
-    chi-square         = 1623.696
-    reduced chi-square = 10.612
+    chi-square         = 277.846
+    reduced chi-square = 1.816
 [[Variables]]
     C:     13 (fixed)
+    wxy:   0.40972566 +/- 0.002928 (0.71%) (init= 0.3)
     D:     400.7 (fixed)
-    wxy:   0.41324311 +/- 0.007844 (1.90%) (init= 0.3)
-    wz:    2.94215058 +/- 0.075349 (2.56%) (init= 1)
+    wz:    2.98238727 +/- 0.028710 (0.96%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.934 
 [[Model]]
-    g_t
+    Model(g_t)
 [[Fit Statistics]]
-    # function evals   = 131
+    # function evals   = 148
     # data points      = 155
     # variables        = 4
-    chi-square         = 1578.285
-    reduced chi-square = 10.452
+    chi-square         = 265.076
+    reduced chi-square = 1.755
 [[Variables]]
     C:     13 (fixed)
     D:     400.7 (fixed)
-    F:     0.39565833 +/- 0.142332 (35.97%) (init= 0.1)
-    tf:    0.00010616 +/- 1.89e-05 (17.84%) (init= 1e-07)
-    wxy:   0.58241819 +/- 0.100504 (17.26%) (init= 0.3)
-    wz:    2.46035623 +/- 0.263516 (10.71%) (init= 1)
+    F:     0.19231080 +/- 0.080672 (41.95%) (init= 0.1)
+    wxy:   0.47310496 +/- 0.032477 (6.86%) (init= 0.3)
+    tf:    8.8857e-05 +/- 1.57e-05 (17.70%) (init= 1e-07)
+    wz:    2.76257302 +/- 0.098297 (3.56%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(F, wxy)                    =  0.991 
-    C(F, tf)                     =  0.567 
-    C(tf, wxy)                   =  0.538 
+    C(F, wxy)                    =  0.994 
+    C(wxy, wz)                   = -0.958 
+    C(F, wz)                     = -0.929 
+    C(F, tf)                     =  0.693 
+    C(wxy, tf)                   =  0.677 
+    C(tf, wz)                    = -0.491 
 [[Model]]
-    g_n
+    Model(g_n)
 [[Fit Statistics]]
     # function evals   = 13
     # data points      = 155
     # variables        = 2
-    chi-square         = 1854.172
-    reduced chi-square = 12.119
+    chi-square         = 365.927
+    reduced chi-square = 2.392
 [[Variables]]
-    C:          13 (fixed)
-    D:          400.7 (fixed)
     a:          0.652 (fixed)
+    C:          13 (fixed)
+    r0:         0.13244729 +/- 0.001350 (1.02%) (init= 0.15)
+    D:          400.7 (fixed)
     lambdaem:   0.657 (fixed)
+    w0:         0.38872614 +/- 0.005236 (1.35%) (init= 0.26)
     lambdaex:   0.633 (fixed)
     n:          1.33 (fixed)
-    r0:         0.13025622 +/- 0.003443 (2.64%) (init= 0.15)
-    w0:         0.39613776 +/- 0.013163 (3.32%) (init= 0.26)
 [[Correlations]] (unreported correlations are <  0.100)
+    C(r0, w0)                    = -0.945 
 [[Model]]
-    g_nt
+    Model(g_nt)
 [[Fit Statistics]]
-    # function evals   = 91
+    # function evals   = 52
     # data points      = 155
     # variables        = 4
-    chi-square         = 1736.314
-    reduced chi-square = 11.499
+    chi-square         = 312.328
+    reduced chi-square = 2.068
 [[Variables]]
-    C:          13 (fixed)
-    D:          400.7 (fixed)
-    F:          0.46507248 +/- 0.099903 (21.48%) (init= 0.3956583)
     a:          0.652 (fixed)
+    C:          13 (fixed)
+    r0:         0.10340808 +/- 0.007343 (7.10%) (init= 0.1324473)
+    D:          400.7 (fixed)
+    F:          0.38508468 +/- 0.055157 (14.32%) (init= 0.1923108)
     lambdaem:   0.657 (fixed)
+    w0:         0.61760416 +/- 0.054903 (8.89%) (init= 0.3887261)
+    tf:         9.2051e-05 +/- 7.61e-06 (8.26%) (init= 8.88575e-05)
     lambdaex:   0.633 (fixed)
     n:          1.33 (fixed)
-    r0:         0.09071640 +/- 0.019107 (21.06%) (init= 0.1302562)
-    tf:         9.9011e-05 +/- 1.62e-05 (16.40%) (init= 0.0001061589)
-    w0:         0.71526194 +/- 0.148985 (20.83%) (init= 0.3961378)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(F, w0)                     =  0.976 
-    C(F, tf)                     =  0.671 
-    C(tf, w0)                    =  0.616 
+    C(F, w0)                     =  0.987 
+    C(r0, w0)                    = -0.981 
+    C(r0, F)                     = -0.941 
+    C(F, tf)                     =  0.685 
+    C(w0, tf)                    =  0.643 
+    C(r0, tf)                    = -0.516 

@@ -1,0 +1,28 @@
+[[Variables]]
+    D:            82.3986274 +/- 0.534949 (0.65%) (init= 69.2)
+    Cb:           1.38145579 +/- 0.006375 (0.46%) (init= 1.26)
+    Cr:           1.46443036 +/- 0.005934 (0.41%) (init= 1.25)
+    Cc:           1.38145579 +/- 0.006375 (0.46%)  == 'Cr if Cr<Cb else Cb'
+    F_b:          0.152574 (fixed)
+    tf_b:         1.001603e-05 (fixed)
+    F_r:          0 (fixed)
+    tf_r:         1e-06 (fixed)
+    delta_z:      0.59876920 +/- 0.002677 (0.45%) (init= 0.5)
+    w0_b:         0.3026182 (fixed)
+    w0_r:         0.3716951 (fixed)
+    a_b:          0.522 (fixed)
+    a_r:          0.652 (fixed)
+    r0_b:         0.1199003 (fixed)
+    r0_r:         0.1487353 (fixed)
+    lambdaex_b:   0.488 (fixed)
+    lambdaem_b:   0.519 (fixed)
+    lambdaex_r:   0.633 (fixed)
+    lambdaem_r:   0.657 (fixed)
+    n:            1.33 (fixed)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(Cb, delta_z)               = -0.660 
+    C(D, Cr)                     = -0.653 
+    C(D, Cb)                     = -0.640 
+    C(Cb, Cr)                    =  0.418 
+    C(D, delta_z)                =  0.211 
+    C(Cr, delta_z)               = -0.137 

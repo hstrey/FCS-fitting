@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 
 #defines the location of the data
-datadir='/Users/hstrey/Dropbox/Research/FCS/Homebuild FCS/Data/012115/'
+datadir='../sample data/dilution/'
 
 def read_corrfile(file):
     with open(file,'r') as f:
@@ -51,6 +51,9 @@ for file in filelist:
     filestart=file[:file.find('_')]
     if file.endswith('.sin') or file.endswith('.SIN'):
         groups[filestart].append(file)
+        
+# here we should ask the user for all the parameters of the datasets
+# maybe ask: do you want to create All.txt
 
 for filestart in groups:
     corr_arrayb=[]

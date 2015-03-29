@@ -4,7 +4,7 @@ import pandas as pd
 import math as m
 import matplotlib.pyplot as plt
 
-from GaussianModels import modelFCS_t, modelFCS, modelFCS_n, modelFCS_nt, vol1, vol2, modelNoise, g_t, g_n, g, g_nt, noise
+from GaussianModels import modelFCS_t, modelFCS, modelFCS_n, modelFCS_nt, vol1, vol2, g_t, g_n, g, g_nt
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -25,7 +25,7 @@ def makeResultDataFrame(modelfit,dataset={}):
     return pd.DataFrame(dataset,index=[0])
 
 #defines the location of the data
-datadir='/Users/hstrey/Dropbox/Research/FCS/Homebuild FCS/Data/051414/50um/dilution/'
+datadir='../sample data/dilution/'
 
 data3dGaussian=pd.DataFrame({})
 data3dGaussianTriplet=pd.DataFrame({})
@@ -55,32 +55,14 @@ for i in range(len(experiments)):
         a=experiments['fiber'+color+'(microns)'][i]
         print '*** dataset: ',filename,'color: ',color,'conc: ',conc,'diffC: ',diffC
         logfile.write('Color: '+color+'\n')
-        # first fit without errors to get a sense for the parameters
-        result = modelFCS_t.fit(corrData[dataName],t=corrData['delta_t'],
-            C=Parameter(value=conc, vary=False),
-            wxy=0.3,
-            wz=1.0,
-            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
-            tf=1e-7,
-            D=Parameter(value=diffC, vary = False))
-                
-        # now calculate the parameters that determine the noise spectrum
-        tc=result.values['wxy']**2/4.0/result.values['D']
-        p=result.values['wxy']/result.values['wz']
         
-        resultN = modelNoise.fit(corrData[stdName]**2,t=corrData['delta_t'],
-            tc=Parameter(value=tc, vary=False),
-            a=Parameter(value=0.00001,vary=True),
-            b=Parameter(value=0.0,vary=True),
-            p=Parameter(value=0.33,vary=False),
-            weights=1./corrData[stdName])
-            
-        print resultN.fit_report()
-        logfile.write(resultN.fit_report()+'\n')
         # calculate fit to data and fit to noise
-        fitFCS=g_t(t=corrData['delta_t'],**result.values)
-        fitNoise=np.sqrt(noise(t=corrData['delta_t'],**resultN.values))
-        
+        logdata=np.log10(corrData[stdName])
+        logt=np.log10(corrData['delta_t'])
+        pf=np.polyfit(logt,logdata,4)
+        p=np.poly1d(pf)
+        fitNoise=10**p(logt)
+
         resultG = modelFCS.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
             wxy=0.3,

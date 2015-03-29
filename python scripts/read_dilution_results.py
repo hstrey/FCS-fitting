@@ -1,15 +1,10 @@
-import numpy as np
-from lmfit import Parameter
 import pandas as pd
-import math as m
 import matplotlib.pyplot as plt
-import sys
-import os
 
 #from GaussianModels import modelFCS_t, modelFCS, modelFCS_n, modelFCS_nt, vol1, vol2, modelNoise, g_t, g_n, g, g_nt, noise
 
 #defines the location of the data
-datadir='/Users/hstrey/Dropbox/Research/FCS/Homebuild FCS/Data/051414/25um/dilution/'
+datadir='../sample data/dilution/'
 
 #defines the columns of the output
 

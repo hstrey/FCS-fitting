@@ -70,7 +70,7 @@ for filestart in groups:
     corr_stdb = np.std(corr_arrayb,axis=0)
     corr_stdr = np.std(corr_arrayr,axis=0)
     corr_stdbr = np.std(corr_arraybr,axis=0)
-    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanb, 'stdB':corr_stdb,'meanR':corr_meanr, 'stdR':corr_stdr,'meanBR':corr_meanbr, 'stdRB':corr_stdbr}
+    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanb, 'stdB':corr_stdb,'meanR':corr_meanr, 'stdR':corr_stdr,'meanBR':corr_meanbr, 'stdBR':corr_stdbr}
     df=pd.DataFrame(d)
     print df
     df.to_csv(datadir+filestart+'.csv',index=False)

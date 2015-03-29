@@ -1,0 +1,62 @@
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    wxy:         0.30643032 +/- 0.001021 (0.33%) (init= 0.25)
+    wz:          2.87725735 +/- 0.011653 (0.41%) (init= 0.4)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.902 
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    wxy:         0.31927863 +/- 0.001544 (0.48%) (init= 0.3064303)
+    wz:          2.79127295 +/- 0.012298 (0.44%) (init= 2.877257)
+    F:           0.13760494 +/- 0.007794 (5.66%) (init= 0.1)
+    tf:          6.2245e-06 +/- 7.81e-07 (12.55%) (init= 1e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.913 
+    C(wxy, tf)                   =  0.617 
+    C(wz, tf)                    = -0.435 
+    C(wxy, F)                    =  0.408 
+    C(wz, F)                     = -0.345 
+    C(F, tf)                     = -0.192 
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    w0:          0.26960590 +/- 0.001829 (0.68%) (init= 0.268856)
+    a:           0.522 (fixed)
+    r0:          0.12412946 +/- 0.000395 (0.32%) (init= 0.1240709)
+    lambdaex:    0.488 (fixed)
+    lambdaem:    0.519 (fixed)
+    n:           1.33 (fixed)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(w0, r0)                    = -0.884 
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    w0:          0.30261820 +/- 0.003820 (1.26%) (init= 0.3094642)
+    a:           0.522 (fixed)
+    r0:          0.11990026 +/- 0.000591 (0.49%) (init= 0.1190476)
+    lambdaex:    0.488 (fixed)
+    lambdaem:    0.519 (fixed)
+    n:           1.33 (fixed)
+    F:           0.15257402 +/- 0.009416 (6.17%) (init= 0.1687349)
+    tf:          1.0016e-05 +/- 1.26e-06 (12.54%) (init= 1.289706e-05)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(w0, r0)                    = -0.921 
+    C(w0, F)                     =  0.736 
+    C(w0, tf)                    =  0.708 
+    C(r0, F)                     = -0.636 
+    C(r0, tf)                    = -0.512 
+    C(F, tf)                     =  0.273 
