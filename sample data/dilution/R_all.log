@@ -13,42 +13,11 @@
     C_BR03125:   3.25 (fixed)
     D:           400.7 (fixed)
     wxy:         0.40378713 +/- 0.002209 (0.55%) (init= 0.4032349)
-    wz:          3.38243469 +/- 0.022834 (0.68%) (init= 3.386399)
-    F:           0.03266397 +/- 0.044354 (135.79%) (init= 0.1)
-    tf:          1.0897e-06 +/- 2.23e-06 (204.74%) (init= 1e-06)
+    wz:          3.38243468 +/- 0.022834 (0.68%) (init= 3.386399)
+    F:           0.03266430 +/- 0.044353 (135.79%) (init= 0.1)
+    tf:          1.0897e-06 +/- 2.23e-06 (204.75%) (init= 1e-06)
 [[Correlations]] (unreported correlations are <  0.100)
     C(wxy, wz)                   = -0.920 
     C(F, tf)                     = -0.698 
     C(wxy, tf)                   =  0.254 
     C(wz, tf)                    = -0.173 
-[[Variables]]
-    C_BR00781:   0.8125 (fixed)
-    C_BR01562:   1.625 (fixed)
-    C_BR03125:   3.25 (fixed)
-    D:           400.7 (fixed)
-    w0:          0.37169508 +/- 0.003268 (0.88%) (init= 0.372312)
-    a:           0.652 (fixed)
-    r0:          0.14873528 +/- 0.000798 (0.54%) (init= 0.1494184)
-    lambdaex:    0.633 (fixed)
-    lambdaem:    0.657 (fixed)
-    n:           1.33 (fixed)
-[[Correlations]] (unreported correlations are <  0.100)
-    C(w0, r0)                    = -0.923 
-[[Variables]]
-    C_BR00781:   0.8125 (fixed)
-    C_BR01562:   1.625 (fixed)
-    C_BR03125:   3.25 (fixed)
-    D:           400.7 (fixed)
-    w0:          0.37315272 +/- 0.003654 (0.98%) (init= 0.3745888)
-    a:           0.652 (fixed)
-    r0:          0.14849760 +/- 0.000844 (0.57%) (init= 0.1490473)
-    lambdaex:    0.633 (fixed)
-    lambdaem:    0.657 (fixed)
-    n:           1.33 (fixed)
-    F:           0.03526313 +/- 0.035132 (99.63%) (init= 0.03694341)
-    tf:          1.5992e-06 +/- 2.54e-06 (158.57%) (init= 2.65878e-06)
-[[Correlations]] (unreported correlations are <  0.100)
-    C(w0, r0)                    = -0.924 
-    C(F, tf)                     = -0.656 
-    C(w0, tf)                    =  0.319 
-    C(r0, tf)                    = -0.219 
