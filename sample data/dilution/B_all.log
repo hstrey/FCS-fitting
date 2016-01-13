@@ -1,0 +1,27 @@
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    wxy:         0.30643032 +/- 0.001021 (0.33%) (init= 0.25)
+    wz:          2.87725732 +/- 0.011653 (0.41%) (init= 0.4)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.902 
+[[Variables]]
+    C_BR00781:   0.828906 (fixed)
+    C_BR01562:   1.657812 (fixed)
+    C_BR03125:   3.315625 (fixed)
+    C_BR06250:   6.63125 (fixed)
+    D:           419.01 (fixed)
+    wxy:         0.31927864 +/- 0.001544 (0.48%) (init= 0.3064303)
+    wz:          2.79127288 +/- 0.012298 (0.44%) (init= 2.877257)
+    F:           0.13760497 +/- 0.007794 (5.66%) (init= 0.1)
+    tf:          6.2245e-06 +/- 7.81e-07 (12.55%) (init= 1e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wxy, wz)                   = -0.913 
+    C(wxy, tf)                   =  0.617 
+    C(wz, tf)                    = -0.435 
+    C(wxy, F)                    =  0.408 
+    C(wz, F)                     = -0.345 
+    C(F, tf)                     = -0.192 

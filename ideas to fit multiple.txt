@@ -1,0 +1,12 @@
+how to do multiple fits with common parameters?
+one x
+several y's
+some fitting parameters are common to all datasets
+some (fitting) parameters are not
+
+Can be generalized for several x, several y
+
+If x is 1-d array x is used for all. If x is array then each y row is associated with x.
+If y is 2-d array it is a multiple data set fit
+
+Input should be lists of np.array()
