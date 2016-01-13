@@ -1,0 +1,11 @@
+500bp 
+
+2 preps
+
+Both ran through gels because there are significant primer / smaller fragments that need to be eliminated / not caught simply by doing kit purification. Main goal of EthOH or kit purification is to remove SYBR Safe dye attached to body of DNA. The effect of the process on the chemical bond of either the alexa 488 or atto 633 at the primer ends is unknown.
+
+1) EthOH precip
+	- either red has been ripped off or there are extra blue dyes two AC's are misaligned
+
+2) Kit purification
+	-

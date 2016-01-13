@@ -1,0 +1,115 @@
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    wxy:         0.37701930 +/- 0.002122 (0.56%) (init= 0.25)
+    wz:          2.47440404 +/- 0.122556 (4.95%) (init= 0.7)
+    slope:       2.00223297 +/- 0.086926 (4.34%) (init= 1)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wz, slope)                 = -0.994 
+    C(wxy, wz)                   = -0.718 
+    C(wxy, slope)                =  0.642 
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    wxy:         0.38499384 +/- 0.003912 (1.02%) (init= 0.3770193)
+    wz:          2.29531457 +/- 0.121859 (5.31%) (init= 2.474404)
+    slope:       2.11301402 +/- 0.092083 (4.36%) (init= 2.002233)
+    F:           0.05396049 +/- 0.012989 (24.07%) (init= 0.05)
+    tf:          8.5968e-06 +/- 4.35e-06 (50.64%) (init= 1e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wz, slope)                 = -0.990 
+    C(wxy, wz)                   = -0.774 
+    C(wxy, slope)                =  0.685 
+    C(wxy, tf)                   =  0.640 
+    C(wxy, F)                    =  0.435 
+    C(wz, tf)                    = -0.359 
+    C(wz, F)                     = -0.302 
+    C(slope, tf)                 =  0.300 
+    C(slope, F)                  =  0.261 
+    C(F, tf)                     = -0.132 
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.33033466 +/- 0.004761 (1.44%) (init= 0.3162852)
+    a:           0.652 (fixed)
+    r0:          0.14305140 +/- 0.004247 (2.97%) (init= 0.1580067)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.53670667 +/- 0.046508 (3.03%) (init= 1)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.992 
+    C(w0, r0)                    = -0.904 
+    C(w0, slope)                 =  0.851 
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.31736040 +/- 0.005158 (1.63%) (init= 0.3303347)
+    a:           0.652 (fixed)
+    r0:          0.18903266 +/- 0.004819 (2.55%) (init= 0.1430514)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.04918338 +/- 0.028724 (2.74%) (init= 1.536707)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.991 
+    C(w0, r0)                    = -0.896 
+    C(w0, slope)                 =  0.841 
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.33918031 +/- 0.006622 (1.95%) (init= 0.3179173)
+    a:           0.652 (fixed)
+    r0:          0.13819768 +/- 0.004886 (3.54%) (init= 0.1578244)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.58393009 +/- 0.053491 (3.38%) (init= 1.049183)
+    F:           0.04786998 +/- 0.017650 (36.87%) (init= 0.03853491)
+    tf:          3.9319e-06 +/- 2.74e-06 (69.64%) (init= 1.538638e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.992 
+    C(w0, r0)                    = -0.911 
+    C(w0, slope)                 =  0.858 
+    C(w0, tf)                    =  0.511 
+    C(F, tf)                     = -0.437 
+    C(r0, tf)                    = -0.346 
+    C(slope, tf)                 =  0.306 
+    C(w0, F)                     =  0.191 
+    C(r0, F)                     = -0.156 
+    C(slope, F)                  =  0.142 
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.32524931 +/- 0.006922 (2.13%) (init= 0.3391803)
+    a:           0.652 (fixed)
+    r0:          0.18447753 +/- 0.005535 (3.00%) (init= 0.1381977)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.07318793 +/- 0.032531 (3.03%) (init= 1.58393)
+    F:           0.04632778 +/- 0.020027 (43.23%) (init= 0.04786999)
+    tf:          3.0387e-06 +/- 2.38e-06 (78.25%) (init= 3.931872e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.991 
+    C(w0, r0)                    = -0.906 
+    C(w0, slope)                 =  0.851 
+    C(F, tf)                     = -0.507 
+    C(w0, tf)                    =  0.481 
+    C(r0, tf)                    = -0.321 
+    C(slope, tf)                 =  0.284 
+    C(w0, F)                     =  0.136 
+    C(r0, F)                     = -0.112 
+    C(slope, F)                  =  0.102 

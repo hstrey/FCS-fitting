@@ -1,0 +1,150 @@
+[[Fit Statistics]]
+    # function evals   = 39
+    # data points      = 423
+    # variables        = 3
+    chi-square         = 633.841
+    reduced chi-square = 1.509
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    wxy:         0.37701931 +/- 0.002122 (0.56%) (init= 0.25)
+    wz:          2.47440355 +/- 0.122556 (4.95%) (init= 0.7)
+    slope:       2.00223332 +/- 0.086926 (4.34%) (init= 1)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wz, slope)                 = -0.994 
+    C(wxy, wz)                   = -0.718 
+    C(wxy, slope)                =  0.642 
+[[Fit Statistics]]
+    # function evals   = 87
+    # data points      = 423
+    # variables        = 5
+    chi-square         = 610.205
+    reduced chi-square = 1.460
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    wxy:         0.38502399 +/- 0.003931 (1.02%) (init= 0.25)
+    wz:          2.29478568 +/- 0.121940 (5.31%) (init= 0.7)
+    slope:       2.11334815 +/- 0.092152 (4.36%) (init= 1)
+    F:           0.05394154 +/- 0.012972 (24.05%) (init= 0.05)
+    tf:          8.6488e-06 +/- 4.39e-06 (50.73%) (init= 1e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(wz, slope)                 = -0.990 
+    C(wxy, wz)                   = -0.774 
+    C(wxy, slope)                =  0.686 
+    C(wxy, tf)                   =  0.642 
+    C(wxy, F)                    =  0.440 
+    C(wz, tf)                    = -0.361 
+    C(wz, F)                     = -0.306 
+    C(slope, tf)                 =  0.301 
+    C(slope, F)                  =  0.265 
+    C(F, tf)                     = -0.124 
+[[Fit Statistics]]
+    # function evals   = 23
+    # data points      = 423
+    # variables        = 3
+    chi-square         = 619.771
+    reduced chi-square = 1.476
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.33029260 +/- 0.004757 (1.44%) (init= 0.3162852)
+    a:           0.652 (fixed)
+    r0:          0.14309963 +/- 0.004243 (2.97%) (init= 0.1580067)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.68539917 +/- 0.046195 (2.74%) (init= 1)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.990 
+    C(w0, r0)                    = -0.904 
+    C(w0, slope)                 =  0.845 
+[[Fit Statistics]]
+    # function evals   = 35
+    # data points      = 423
+    # variables        = 3
+    chi-square         = 616.397
+    reduced chi-square = 1.468
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.31722309 +/- 0.005117 (1.61%) (init= 0.3162852)
+    a:           0.652 (fixed)
+    r0:          0.18920346 +/- 0.004706 (2.49%) (init= 0.1580067)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.18660009 +/- 0.027784 (2.34%) (init= 1)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.988 
+    C(w0, r0)                    = -0.895 
+    C(w0, slope)                 =  0.828 
+[[Fit Statistics]]
+    # function evals   = 45
+    # data points      = 423
+    # variables        = 5
+    chi-square         = 607.691
+    reduced chi-square = 1.454
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.33909425 +/- 0.006605 (1.95%) (init= 0.3179173)
+    a:           0.652 (fixed)
+    r0:          0.13827369 +/- 0.004875 (3.53%) (init= 0.1578244)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.73126511 +/- 0.052746 (3.05%) (init= 1)
+    F:           0.04785936 +/- 0.017689 (36.96%) (init= 0.03853491)
+    tf:          3.9140e-06 +/- 2.73e-06 (69.71%) (init= 1.538638e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.990 
+    C(w0, r0)                    = -0.911 
+    C(w0, slope)                 =  0.851 
+    C(w0, tf)                    =  0.510 
+    C(F, tf)                     = -0.439 
+    C(r0, tf)                    = -0.345 
+    C(slope, tf)                 =  0.301 
+    C(w0, F)                     =  0.189 
+    C(r0, F)                     = -0.155 
+    C(slope, F)                  =  0.139 
+[[Fit Statistics]]
+    # function evals   = 45
+    # data points      = 423
+    # variables        = 5
+    chi-square         = 606.874
+    reduced chi-square = 1.452
+[[Variables]]
+    C_BR01562:   0.8 (fixed)
+    C_BR03125:   1.6 (fixed)
+    C_BR06250:   3.2 (fixed)
+    D:           404.98 (fixed)
+    w0:          0.32507883 +/- 0.006906 (2.12%) (init= 0.3179173)
+    a:           0.652 (fixed)
+    r0:          0.18466196 +/- 0.005530 (2.99%) (init= 0.1578244)
+    lambdaex:    0.633 (fixed)
+    lambdaem:    0.657 (fixed)
+    n:           1.33 (fixed)
+    slope:       1.20988507 +/- 0.032093 (2.65%) (init= 1)
+    F:           0.04630366 +/- 0.020108 (43.43%) (init= 0.03853491)
+    tf:          3.0177e-06 +/- 2.37e-06 (78.38%) (init= 1.538638e-06)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(r0, slope)                 = -0.988 
+    C(w0, r0)                    = -0.906 
+    C(w0, slope)                 =  0.842 
+    C(F, tf)                     = -0.509 
+    C(w0, tf)                    =  0.479 
+    C(r0, tf)                    = -0.320 
+    C(slope, tf)                 =  0.277 
+    C(w0, F)                     =  0.134 
+    C(r0, F)                     = -0.110 

@@ -1,0 +1,24 @@
+[[Fit Statistics]]
+    # function evals   = 21
+    # data points      = 558
+    # variables        = 3
+    chi-square         = 1362.403
+    reduced chi-square = 2.455
+[[Variables]]
+    D:            62.6122498 +/- 0.407158 (0.65%) (init= 70)
+    C:            2.38748365 +/- 0.006665 (0.28%) (init= 2)
+    delta_z:      0.97500684 +/- 0.005402 (0.55%) (init= 0.5)
+    w0_b:         0.1971692 (fixed)
+    w0_r:         0.3390943 (fixed)
+    a_b:          0.522 (fixed)
+    a_r:          0.652 (fixed)
+    r0_b:         0.1238731 (fixed)
+    r0_r:         0.1382737 (fixed)
+    lambdaex_b:   0.488 (fixed)
+    lambdaem_b:   0.519 (fixed)
+    lambdaex_r:   0.633 (fixed)
+    lambdaem_r:   0.657 (fixed)
+    n:            1.33 (fixed)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(D, C)                      = -0.761 
+    C(C, delta_z)                = -0.162 

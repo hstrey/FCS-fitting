@@ -1,0 +1,22 @@
+[[Variables]]
+    D:            70.4688200 +/- 0.658699 (0.93%) (init= 70)
+    C:            1.67063831 +/- 0.006774 (0.41%) (init= 10)
+    F_b:          0 (fixed)
+    tf_b:         1e-06 (fixed)
+    F_r:          0 (fixed)
+    tf_r:         1e-06 (fixed)
+    delta_z:      1.30276504 +/- 0.010447 (0.80%) (init= 1)
+    w0_b:         0.2039038 (fixed)
+    w0_r:         0.2913415 (fixed)
+    a_b:          0.522 (fixed)
+    a_r:          0.652 (fixed)
+    r0_b:         0.1132298 (fixed)
+    r0_r:         0.1874909 (fixed)
+    lambdaex_b:   0.488 (fixed)
+    lambdaem_b:   0.519 (fixed)
+    lambdaex_r:   0.633 (fixed)
+    lambdaem_r:   0.657 (fixed)
+    n:            1.33 (fixed)
+[[Correlations]] (unreported correlations are <  0.100)
+    C(D, C)                      = -0.752 
+    C(C, delta_z)                = -0.161 
