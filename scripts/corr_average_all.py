@@ -26,7 +26,7 @@ def makeResultDataFrame(modelfit,dataset={}):
     return pd.DataFrame(dataset,index=[0])
 
 #defines the location of the data
-datadir='../062415/50um/Dilutions/SOME/'
+datadir='../Dilutions/SOME/'
 parafile="B4R4"
 
 data3dG=pd.read_csv(datadir+'gaussian_'+parafile+'.csv')

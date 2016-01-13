@@ -20,7 +20,7 @@ from GaussianModels import g_oligo_all,g_oligo_all_n
 #datadir='../062415/50um/dilutions/SOME/'
 #datafile='../061515/OL_N/Retest with New Gaussian Models/OL100ace'
 #datadir2='../061515/OL_N/Retest with New Gaussian Models/'
-datadir='../062415/25um/dilutions/SOME/'
+datadir='../Dilutions/SOME/'
 datafile='../062415/25um/OL_Na/OL100'
 datadir2='../062415/25um/OL_Na/'
 
