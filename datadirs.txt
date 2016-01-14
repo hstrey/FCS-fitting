@@ -1,2 +1,2 @@
-data,diluations,oligos,pcr
-"data/","diluations/","oligos/","pcr/"
+data,dilutions,oligos,pcr,concfile
+"data","dilutions","oligos","pcr","B4R4"
