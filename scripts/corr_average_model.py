@@ -27,7 +27,7 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../062415/50um/dilutions/'
+datadir='../Dilutions/'
 
 data3dGaussian=pd.DataFrame({})
 data3dGaussianTriplet=pd.DataFrame({})

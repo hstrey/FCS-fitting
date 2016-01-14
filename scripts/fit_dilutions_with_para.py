@@ -32,8 +32,8 @@ def makeResultDataFrame(modelfit,dataset={}):
     return pd.DataFrame(dataset,index=[0])
 
 #defines the location of the data
-datadir='../062415/50um/Dilutions/SOME/'
-datadir_all='../062415/50um/Dilutions/'
+datadir='../Dilutions/SOME/'
+datadir_all='../Dilutions/'
 parafile="B4R4"
 
 # load the parameters for each fit from the pickle file

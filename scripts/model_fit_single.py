@@ -28,7 +28,7 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../062415/50um/dilutions/'
+datadir='../Dilutions/'
 parameter_file='B4R4'
 
 experiments=pd.read_table(datadir+parameter_file+'.txt')
