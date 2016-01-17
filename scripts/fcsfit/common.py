@@ -10,7 +10,16 @@ includes function and definitions that are common to all FCS fitting models
 import numpy as np
 import math as m
 from lmfit import Model
-from scipy.integrate import quad
+
+#constants
+maxz=10 # z integration range in microns
+
+# determine hermite-gaussian integration intervals
+hermite_order=32
+xh,yh=np.polynomial.hermite.hermgauss(hermite_order)
+xh_half=xh[hermite_order/2:]
+yh_half=yh[hermite_order/2:]
+
 
 # model for fitting standard deviation (noise)
 def fitnoise(t,std):
@@ -36,4 +45,5 @@ def RR(z,r0,lambdaem,n):
 def k_real(z,a,r0,lambdaem,n):
     rr=RR(z,r0,lambdaem,n)
     return np.where(rr>a**2,a**2/rr,1.0)
+
 

@@ -94,12 +94,6 @@ def gz1_hermite(xi,t,D,w0,a,R0,lambdaex,lambdaem,n,k):
 def g_hermite(t,D,w0,a,R0,lambdaex,lambdaem,n,k=k):
     return quad(gz1_hermite,0,maxz,args=(t,D,w0,a,R0,lambdaex,lambdaem,n,k))
 
-#def gz1(xi,t,D,w0,a,R0,lambdaex,lambdaem,n):
-#    return quad(gi,0,200+np.sqrt(D*t)*xi,args=(xi,t,D,w0,a,R0,lambdaex,lambdaem,n))[0]
-
-#def g(t,D,w0,a,R0,lambdaex,lambdaem,n):
-#    return quad(gz1,0,200,args=(t,D,w0,a,R0,lambdaex,lambdaem,n))
-
 def g0(z,w0,a,R0,lambdaex,lambdaem,n,k=k):
     return k(z,a,R0,lambdaem,n)**2/w2(z,w0,lambdaex,n)
 
