@@ -7,18 +7,7 @@ from common import w2,k,RR,k_real,maxz,xh_half,yh_half
 #####################################################################
 # Numerical models
 #####################################################################
-def w2(z,w0,lambdaex,n):
-    return w0*w0+(lambdaex*z/np.pi/w0/n)**2
 
-def k(z,a,r0,lambdaem,n):
-    return 1-np.exp(-2*a*a/(r0*r0+(lambdaem*z/np.pi/r0/n)**2))
-
-def RR(z,r0,lambdaem,n):
-    return r0*r0+(lambdaem*z/np.pi/r0/n)**2
-
-def k_real(z,a,r0,lambdaem,n):
-    rr=RR(z,r0,lambdaem,n)
-    return np.where(rr>a**2,a**2/rr,1.0)
 
 def g_noexp(eta,xi,t,D,w0,a,R0,lambdaex,lambdaem,n,k):
     return np.sqrt(np.pi)*k(eta-np.sqrt(D*t)*xi,a,R0,lambdaem,n)*k(eta+np.sqrt(D*t)*xi,a,R0,lambdaem,n)/(8*D*t+w2(eta-np.sqrt(D*t)*xi,w0,lambdaex,n)+w2(eta+np.sqrt(D*t)*xi,w0,lambdaex,n))
