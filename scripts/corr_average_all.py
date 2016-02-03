@@ -5,7 +5,7 @@ import math as m
 import pickle
 import copy
 
-from FCS_Models_reversed import g_all,g_all_t, g_all_n,g_all_nt,g_all_nr,g_all_ntr,vol1dict, vol2dict,k_real
+from fcsfit.FCS_Models_reversed import g_all,g_all_t, g_all_n,g_all_nt,g_all_nr,g_all_ntr,vol1dict, vol2dict,k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -26,7 +26,7 @@ def makeResultDataFrame(modelfit,dataset={}):
     return pd.DataFrame(dataset,index=[0])
 
 #defines the location of the data
-datadir='../Dilutions/SOME/'
+datadir='../data/dilutions/SOME/'
 parafile="B4R4"
 
 data3dG=pd.read_csv(datadir+'gaussian_'+parafile+'.csv')

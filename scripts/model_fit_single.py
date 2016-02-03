@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import time
 import sys
 
-from FCS_Models import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt,vol1, vol2, g_t, g_n, g, g_nt,k_real
+from fcsfit.FCS_Models import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt,vol1, vol2, g_t, g_n, g, g_nt,k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -28,7 +28,7 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../Dilutions/'
+datadir='../data/dilutions/'
 parameter_file='B4R4'
 
 experiments=pd.read_table(datadir+parameter_file+'.txt')

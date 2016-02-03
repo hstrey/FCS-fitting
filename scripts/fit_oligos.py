@@ -16,9 +16,9 @@ from FCS_Models_reversed import g_oligo_all,g_oligo_all_n,k_real,fitnoise
 #from GaussianModels_old import g_oligo_all,g_oligo_all_n
 
 #defines the location of the data
-datadir='../Dilutions/SOME/'
-datadir_all='../Dilutions/'
-oligodir='../061515/OL_N/'
+datadir='../data/dilutions/SOME/'
+datadir_all='../dilutions/'
+oligodir='../data/oligos/'
 datafile='OL100ace'
 
 datadict={}

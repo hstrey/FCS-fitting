@@ -11,7 +11,7 @@ import pandas as pd
 import pickle
 import collections
 
-from FCS_Models_reversed import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
+from fcsfit.FCS_Models_reversed import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -32,8 +32,8 @@ def makeResultDataFrame(modelfit,dataset={}):
     return pd.DataFrame(dataset,index=[0])
 
 #defines the location of the data
-datadir='../Dilutions/SOME/'
-datadir_all='../Dilutions/'
+datadir='../data/dilutions/SOME/'
+datadir_all='../data/dilutions/'
 parafile="B4R4"
 
 # load the parameters for each fit from the pickle file

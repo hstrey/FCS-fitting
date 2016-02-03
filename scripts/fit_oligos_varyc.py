@@ -16,9 +16,9 @@ from FCS_Models_reversed import g_oligo_all,g_oligo_all_nc,k_real
 #from GaussianModels_old import g_oligo_all,g_oligo_all_n
 
 #defines the location of the data
-datadir='../062415/50um/dilutions/SOME/'
-datadir_all='../062415/50um/dilutions/'
-oligodir='../061515/OL_N/'
+datadir='../data/dilutions/SOME/'
+datadir_all='../data/dilutions/'
+oligodir='../data/oligos/'
 datafile='OL100ace'
 
 corrData=pd.read_csv(oligodir+datafile+'.csv')

@@ -5,7 +5,7 @@ import math as m
 import matplotlib.pyplot as plt
 import time
 
-from FCS_Models import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, vol1, vol2, g_t, g_n, g, g_nt
+from fcsfit.FCS_Models import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, vol1, vol2, g_t, g_n, g, g_nt
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
