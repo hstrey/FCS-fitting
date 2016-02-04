@@ -57,8 +57,6 @@ def fitnoise(t,std):
     p=np.poly1d(pf)
     return 10**p(logt)
 
-modelNoise=Model(noise,independent_vars=['t'])
-
 #####################################################################
 # Numerical models
 #####################################################################

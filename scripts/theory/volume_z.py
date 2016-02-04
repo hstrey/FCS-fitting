@@ -7,14 +7,22 @@ Created on Tue Jun 30 11:32:43 2015
 
 import numpy as np
 import matplotlib.pyplot as plt
-from FCS_Models_reversed import vol1, vol2, vol2c, vol2f,k_real
 import pickle
 import collections
 import pandas as pd
+import sys,os
+
+# make sure that this scripts can find the fcsfit folder that is one level below
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if not path in sys.path:
+    sys.path.insert(1, path)
+del path
+
+from fcsfit.FCS_Models_reversed import vol1, vol2, vol2c, vol2f,k_real
 
 #defines the location of the data
-datadir='../062415/50um/dilutions/SOME/'
-datadir_all='../062415/50um/Dilutions/'
+datadir='../data/dilutions/SOME/'
+datadir_all='../data/dilutions/'
 
 # load the parameters for each fit from the pickle file
 # there are 6 parameter objects per color 3dG, 3dGt, n, nt, nr, ntr

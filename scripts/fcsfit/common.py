@@ -29,8 +29,6 @@ def fitnoise(t,std):
     p=np.poly1d(pf)
     return 10**p(logt)
 
-modelNoise=Model(noise,independent_vars=['t'])
-
 # functions that define realistic MDF
 def w2(z,w0,lambdaex,n):
     return w0*w0+(lambdaex*z/np.pi/w0/n)**2
