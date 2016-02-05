@@ -29,6 +29,9 @@ def gz1(xi,t,D,w0,a,R0,lambdaex,lambdaem,n):
 def g0(z,w0,a,R0,lambdaex,lambdaem,n):
     return k_real(z,a,R0,lambdaem,n)**2/w2(z,w0,lambdaex,n)
 
+def g0_1(z,w0,a,R0,lambdaex,lambdaem,n):
+    return 1.0/w2(z,w0,lambdaex,n)
+
 # vol1 is integral over k(z) and the square normalizes the function g_hermite
 # g(t)=g_hermite/vol1**2
 # !!!! change code to allow for k_real !!!
@@ -38,7 +41,9 @@ def vol1r(a,r0,lambdaem,n,C=None,D=None,lambdaex=None,w0=None,F=None,tf=None):
     return (z_1+quad(k_real,z_1,maxz,args=(a,r0,lambdaem,n))[0])*np.pi
 
 def vol2r(w0,a,r0,lambdaex,lambdaem,n,C=None,D=None,F=None,tf=None):
-    return np.pi/2.0*quad(g0,0,maxz,args=(w0,a,r0,lambdaex,lambdaem,n))[0]
+    # have to find the z for which rr=a*a
+    z_1=np.sqrt(a*a-r0*r0)/lambdaem*np.pi*r0*n
+    return np.pi/2.0*(quad(g0_1,0,z_1,args=(w0,a,r0,lambdaex,lambdaem,n))[0]+quad(g0,z_1,maxz,args=(w0,a,r0,lambdaex,lambdaem,n))[0])
 
 def vol1dict(b):
     n = b['n'].value
