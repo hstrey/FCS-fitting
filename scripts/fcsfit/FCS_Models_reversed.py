@@ -100,7 +100,7 @@ def gz1(xi,t,D,w0,a,R0,lambdaex,lambdaem,n,k):
 #def g(t,D,w0,a,R0,lambdaex,lambdaem,n):
 #    return quad(gz1,0,200,args=(t,D,w0,a,R0,lambdaex,lambdaem,n))
 
-def g0(z,w0,a,R0,lambdaex,lambdaem,n,k=k):
+def g0(z,w0,a,R0,lambdaex,lambdaem,n,k):
     return k(z,a,R0,lambdaem,n)**2/w2(z,w0,lambdaex,n)
 
 # vol1 is integral over k(z) and the square normalizes the function g_hermite
@@ -139,7 +139,7 @@ def g_n(t,D,C,w0,a,r0,lambdaex,lambdaem,n,k=k):
     
 def g_n_norm(t,D,w0,a,r0,lambdaex,lambdaem,n,k=k):
     v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k)
-    return np.array([1+g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k)/v2 for tt in t])
+    return np.array([g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k) for tt in t])/v2
 
 def g_nt(t,D,C,w0,a,r0,lambdaex,lambdaem,n,F,tf,k=k):
     v1=vol1(a,r0,lambdaem,n,k)

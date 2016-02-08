@@ -12,7 +12,7 @@ if not path in sys.path:
     sys.path.insert(1, path)
 del path
 
-from fcsfit.FCS_Models_reversed import g_n_norm ,k_real
+from fcsfit.realistic_reversed import g_n_norm ,k_real
 
 #defines the location of the data
 datadir='../../data/dilutions/'
@@ -21,7 +21,9 @@ fit_dilutions=pd.read_csv(datadir+"fit_dilutions_plots.csv")
 final_para=pd.read_csv(datadir+"final_parameters.csv")
 
 # get experimental time range
-t=np.append([0],np.array(fit_dilutions['tR']))
+t=np.append([0.0],np.array(fit_dilutions['tR']))
+
+print "t[0]: ",t[0]
 
 datadict={}
 datadict['t']=t
@@ -32,7 +34,9 @@ gn=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33)-1.0
+                1.33)
+
+print "gn(0): ",gn[0]
 
 datadict['gn']=gn
 
@@ -42,7 +46,9 @@ gnr=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33, k=k_real)-1.0
+                1.33, k=k_real)
+
+print "gnr(0): ",gnr[0]
 
 datadict['gnr']=gnr
 
