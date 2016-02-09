@@ -14,7 +14,7 @@ del path
 
 from fcsfit.common import k_real
 from fcsfit.realistic_reversed import vol1,vol2
-from fcsfit.realistic_real_reversed import vol1r, vol2r, g_hermite, g_hermite2
+from fcsfit.realistic_real_reversed import vol1r, vol2r, g_hermite
 
 #defines the location of the data
 datadir='../../data/dilutions/'
@@ -32,7 +32,7 @@ print "lambdaem: ",final_para['lambdaem'][4]
 print "vol1: ",vol1(final_para['a'][4],
            final_para['r0'][4],
            final_para['lambdaem'][4],
-           1.33,k=k_real)
+           1.33,mdf=k_real)
 
 print "vol1r: ",vol1r(final_para['a'][4],
            final_para['r0'][4],
@@ -44,7 +44,7 @@ v2 = vol2(final_para['w0'][4],
            final_para['r0'][4],
            final_para['lambdaex'][4],
            final_para['lambdaem'][4],
-           1.33,k=k_real)
+           1.33, mdf=k_real)
 
 print "v2: ",v2
 
@@ -65,17 +65,5 @@ gh = g_hermite(0.0,
             final_para['lambdaem'][4],
             1.33)
 
-print gh/v2
-print gh/v2r
-
-gh2 = g_hermite2(0.0,
-            final_para['D'][4],
-            final_para['w0'][4],
-            final_para['a'][4],
-            final_para['r0'][4],
-            final_para['lambdaex'][4],
-            final_para['lambdaem'][4],
-            1.33,k=k_real)
-
-print gh2/v2
-print gh2/v2r
+print "gh/v2: ",gh/v2
+print "gh/v2r: ",gh/v2r

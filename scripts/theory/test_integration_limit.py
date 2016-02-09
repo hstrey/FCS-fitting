@@ -12,7 +12,8 @@ if not path in sys.path:
     sys.path.insert(1, path)
 del path
 
-from fcsfit.realistic_reversed import g_n_norm ,k_real
+from fcsfit.common import k_real,k
+from fcsfit.realistic_reversed import g_n_norm
 
 #defines the location of the data
 datadir='../../data/dilutions/'
@@ -34,7 +35,7 @@ gn=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33)
+                1.33,mdf=k)
 
 print "gn(0): ",gn[0]
 
@@ -46,11 +47,11 @@ gnr=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33, k=k_real)
+                1.33, mdf=k_real)
 
 print "gnr(0): ",gnr[0]
 
 datadict['gnr']=gnr
 
-data=pd.DataFrame(datadict)
-data.to_csv(datadir+'integration_limit_rev_10_32.csv')
+# data=pd.DataFrame(datadict)
+# data.to_csv(datadir+'integration_limit_rev_10_32.csv')
