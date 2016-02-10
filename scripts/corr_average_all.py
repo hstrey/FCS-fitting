@@ -28,7 +28,7 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-scansDir='../data/dilutions/'
+datadir_all='../data/dilutions/'
 parafile="B4R4"
 
 data3dG=pd.read_csv(datadir+'gaussian_'+parafile+'.csv')
@@ -47,7 +47,7 @@ for color in ['B','R']:
     logfile=open(datadir+color+'_'+parafile+'_rev.log',"w")
     for i in range(len(experiments)):
         filename=experiments['filename'][i]
-        corrSet=pd.read_csv(scansDir+filename+'.csv')
+        corrSet=pd.read_csv(datadir_all+filename+'.csv')
         
         #data set for fitting mean square displacements
         corrData=corrSet[corrSet['delta_t']>=1e-7]
@@ -143,8 +143,8 @@ for color in ['B','R']:
     print fit_report(resultN)
     logfile.write(fit_report(resultN)+'\n')
 
-    v1=vol1dict(resultN.params,mdf=k_real)
-    v2=vol2dict(resultN.params,mdf=k_real)
+    v1=vol1dict(resultN.params,cef=k_real)
+    v2=vol2dict(resultN.params,cef=k_real)
     print "Volume = ",v1*v1/v2
         
     datasetGNR=makeResultDataFrame(resultN,{'color':color,'v':v1*v1/v2,'chisq':resultN.chisqr,'redchi':resultN.redchi})
@@ -181,8 +181,8 @@ for color in ['B','R']:
     print fit_report(resultNR)
     logfile.write(fit_report(resultNR)+'\n')
 
-    v1=vol1dict(resultNR.params,mdf=k_real)
-    v2=vol2dict(resultNR.params,mdf=k_real)
+    v1=vol1dict(resultNR.params,cef=k_real)
+    v2=vol2dict(resultNR.params,cef=k_real)
     print "Volume = ",v1*v1/v2
     
     datasetGNtR=makeResultDataFrame(resultNR,{'color':color,'v':v1*v1/v2,'chisq':resultNR.chisqr,'redchi':resultNR.redchi})

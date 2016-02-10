@@ -11,7 +11,8 @@ import pandas as pd
 import pickle
 import collections
 
-from fcsfit.FCS_Models_reversed import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
+from fcsfit.gaussian import modelFCS_t, modelFCS
+from fcsfit.realistic_reversed import modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):

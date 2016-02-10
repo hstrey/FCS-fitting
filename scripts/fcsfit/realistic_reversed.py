@@ -162,9 +162,9 @@ def g_all_nr(b,t,c,data=None,sigma=None):
     for conc in c:
         C=slope*6.022e-1*b[conc].value
 
-        v1=vol1(a,r0,lambdaem,n,mdf=k_real)
+        v1=vol1(a,r0,lambdaem,n,cef=k_real)
         v12=v1*v1
-        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,mdf=k_real)
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,cef=k_real)
 
         print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
 
@@ -195,13 +195,13 @@ def g_all_ntr(b,t,c,data=None,sigma=None):
     for conc in c:
         C=slope*6.022e-1*b[conc].value
 
-        v1=vol1(a,r0,lambdaem,n,mdf=k_real)
+        v1=vol1(a,r0,lambdaem,n,cef=k_real)
         v12=v1*v1
-        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,mdf=k_real)
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,cef=k_real)
 
         print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
 
-        g=1.0+np.array([(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,mdf=k_real) for tt in t])/C/v12
+        g=1.0+np.array([(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,cef=k_real) for tt in t])/C/v12
         if corr_g is None:
             corr_g=g
         else:
