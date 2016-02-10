@@ -10,8 +10,8 @@
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
     wxy:         0.37701931 +/- 0.002122 (0.56%) (init= 0.25)
-    wz:          2.47440355 +/- 0.122556 (4.95%) (init= 0.7)
-    slope:       2.00223332 +/- 0.086926 (4.34%) (init= 1)
+    wz:          2.47440358 +/- 0.122556 (4.95%) (init= 0.7)
+    slope:       2.00223329 +/- 0.086926 (4.34%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
     C(wz, slope)                 = -0.994 
     C(wxy, wz)                   = -0.718 
@@ -27,10 +27,10 @@
     C_BR03125:   1.6 (fixed)
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
-    wxy:         0.38502399 +/- 0.003931 (1.02%) (init= 0.25)
-    wz:          2.29478568 +/- 0.121940 (5.31%) (init= 0.7)
-    slope:       2.11334815 +/- 0.092152 (4.36%) (init= 1)
-    F:           0.05394154 +/- 0.012972 (24.05%) (init= 0.05)
+    wxy:         0.38502397 +/- 0.003931 (1.02%) (init= 0.25)
+    wz:          2.29478593 +/- 0.121940 (5.31%) (init= 0.7)
+    slope:       2.11334801 +/- 0.092152 (4.36%) (init= 1)
+    F:           0.05394162 +/- 0.012972 (24.05%) (init= 0.05)
     tf:          8.6488e-06 +/- 4.39e-06 (50.73%) (init= 1e-06)
 [[Correlations]] (unreported correlations are <  0.100)
     C(wz, slope)                 = -0.990 
@@ -54,39 +54,39 @@
     C_BR03125:   1.6 (fixed)
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
-    w0:          0.33029260 +/- 0.004757 (1.44%) (init= 0.3162852)
+    w0:          0.33029257 +/- 0.004757 (1.44%) (init= 0.3162852)
     a:           0.652 (fixed)
-    r0:          0.14309963 +/- 0.004243 (2.97%) (init= 0.1580067)
+    r0:          0.14309966 +/- 0.004243 (2.97%) (init= 0.1580067)
     lambdaex:    0.633 (fixed)
     lambdaem:    0.657 (fixed)
     n:           1.33 (fixed)
-    slope:       1.68539917 +/- 0.046195 (2.74%) (init= 1)
+    slope:       1.68539892 +/- 0.046195 (2.74%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
     C(r0, slope)                 = -0.990 
     C(w0, r0)                    = -0.904 
     C(w0, slope)                 =  0.845 
 [[Fit Statistics]]
-    # function evals   = 35
+    # function evals   = 23
     # data points      = 423
     # variables        = 3
-    chi-square         = 616.397
+    chi-square         = 616.396
     reduced chi-square = 1.468
 [[Variables]]
     C_BR01562:   0.8 (fixed)
     C_BR03125:   1.6 (fixed)
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
-    w0:          0.31722309 +/- 0.005117 (1.61%) (init= 0.3162852)
+    w0:          0.31726258 +/- 0.005142 (1.62%) (init= 0.3162852)
     a:           0.652 (fixed)
-    r0:          0.18920346 +/- 0.004706 (2.49%) (init= 0.1580067)
+    r0:          0.18916293 +/- 0.004798 (2.54%) (init= 0.1580067)
     lambdaex:    0.633 (fixed)
     lambdaem:    0.657 (fixed)
     n:           1.33 (fixed)
-    slope:       1.18660009 +/- 0.027784 (2.34%) (init= 1)
+    slope:       1.78741099 +/- 0.044537 (2.49%) (init= 1)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(r0, slope)                 = -0.988 
-    C(w0, r0)                    = -0.895 
-    C(w0, slope)                 =  0.828 
+    C(r0, slope)                 = -0.990 
+    C(w0, r0)                    = -0.896 
+    C(w0, slope)                 =  0.834 
 [[Fit Statistics]]
     # function evals   = 45
     # data points      = 423
@@ -98,15 +98,15 @@
     C_BR03125:   1.6 (fixed)
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
-    w0:          0.33909425 +/- 0.006605 (1.95%) (init= 0.3179173)
+    w0:          0.33909428 +/- 0.006605 (1.95%) (init= 0.3179173)
     a:           0.652 (fixed)
-    r0:          0.13827369 +/- 0.004875 (3.53%) (init= 0.1578244)
+    r0:          0.13827368 +/- 0.004875 (3.53%) (init= 0.1578244)
     lambdaex:    0.633 (fixed)
     lambdaem:    0.657 (fixed)
     n:           1.33 (fixed)
-    slope:       1.73126511 +/- 0.052746 (3.05%) (init= 1)
-    F:           0.04785936 +/- 0.017689 (36.96%) (init= 0.03853491)
-    tf:          3.9140e-06 +/- 2.73e-06 (69.71%) (init= 1.538638e-06)
+    slope:       1.73126527 +/- 0.052746 (3.05%) (init= 1)
+    F:           0.04785939 +/- 0.017689 (36.96%) (init= 0.03853491)
+    tf:          3.9141e-06 +/- 2.73e-06 (69.71%) (init= 1.538638e-06)
 [[Correlations]] (unreported correlations are <  0.100)
     C(r0, slope)                 = -0.990 
     C(w0, r0)                    = -0.911 
@@ -119,7 +119,7 @@
     C(r0, F)                     = -0.155 
     C(slope, F)                  =  0.139 
 [[Fit Statistics]]
-    # function evals   = 45
+    # function evals   = 39
     # data points      = 423
     # variables        = 5
     chi-square         = 606.874
@@ -129,22 +129,23 @@
     C_BR03125:   1.6 (fixed)
     C_BR06250:   3.2 (fixed)
     D:           404.98 (fixed)
-    w0:          0.32507883 +/- 0.006906 (2.12%) (init= 0.3179173)
+    w0:          0.32507947 +/- 0.006900 (2.12%) (init= 0.3179173)
     a:           0.652 (fixed)
-    r0:          0.18466196 +/- 0.005530 (2.99%) (init= 0.1578244)
+    r0:          0.18466025 +/- 0.005528 (2.99%) (init= 0.1578244)
     lambdaex:    0.633 (fixed)
     lambdaem:    0.657 (fixed)
     n:           1.33 (fixed)
-    slope:       1.20988507 +/- 0.032093 (2.65%) (init= 1)
-    F:           0.04630366 +/- 0.020108 (43.43%) (init= 0.03853491)
-    tf:          3.0177e-06 +/- 2.37e-06 (78.38%) (init= 1.538638e-06)
+    slope:       1.82377238 +/- 0.050331 (2.76%) (init= 1)
+    F:           0.04631485 +/- 0.020135 (43.47%) (init= 0.03853491)
+    tf:          3.0159e-06 +/- 2.36e-06 (78.29%) (init= 1.538638e-06)
 [[Correlations]] (unreported correlations are <  0.100)
-    C(r0, slope)                 = -0.988 
+    C(r0, slope)                 = -0.989 
     C(w0, r0)                    = -0.906 
-    C(w0, slope)                 =  0.842 
-    C(F, tf)                     = -0.509 
+    C(w0, slope)                 =  0.845 
+    C(F, tf)                     = -0.510 
     C(w0, tf)                    =  0.479 
-    C(r0, tf)                    = -0.320 
-    C(slope, tf)                 =  0.277 
+    C(r0, tf)                    = -0.319 
+    C(slope, tf)                 =  0.279 
     C(w0, F)                     =  0.134 
-    C(r0, F)                     = -0.110 
+    C(r0, F)                     = -0.111 
+    C(slope, F)                  =  0.100 

@@ -130,24 +130,26 @@ def vol2dict(b,k=k):
     return m.pi/2.0*quad(g0,0,maxz,args=(w0,a,r0,lambdaex,lambdaem,n,k))[0]
 
 def g_n(t,D,C,w0,a,r0,lambdaex,lambdaem,n,k=k):
-    v1=vol1(a,r0,lambdaem,n,k)
-    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k)
+    v1=vol1(a,r0,lambdaem,n,k=k)
+    v12=v1*v1
+    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k=k)
 
     print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2
 
-    return np.array([1+g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k)/C/6.022e-1/v1/v1 for tt in t])
+    return 1.0+np.array([g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k)/C/6.022e-1/v1/v1 for tt in t])/C/6.022e-1/v12
     
 def g_n_norm(t,D,w0,a,r0,lambdaex,lambdaem,n,k=k):
-    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k)
+    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k=k)
     return np.array([g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k) for tt in t])/v2
 
 def g_nt(t,D,C,w0,a,r0,lambdaex,lambdaem,n,F,tf,k=k):
-    v1=vol1(a,r0,lambdaem,n,k)
-    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k)
+    v1=vol1(a,r0,lambdaem,n,k=k)
+    v12=v1*v1
+    v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k=k)
 
     print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2, "F",F,"tf",tf
     
-    return np.array([1+(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k)/C/6.022e-1/v1/v1 for tt in t])
+    return 1.0+np.array([(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k) for tt in t])/C/6.022e-1/v12
     
 modelFCS_n = Model(g_n,independent_vars=['t'])
 modelFCS_nt = Model(g_nt,independent_vars=['t'])
@@ -284,8 +286,8 @@ def g_all_nr(b,t,c,data=None,sigma=None):
     for conc in c:
         C=slope*6.022e-1*b[conc].value
 
-        v1=vol1(a,r0,lambdaem,n,k_real)
-        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k_real)
+        v1=vol1(a,r0,lambdaem,n,k=k_real)
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,k=k_real)
 
         print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
 

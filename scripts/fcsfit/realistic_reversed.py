@@ -44,17 +44,17 @@ def vol1dict(b,mdf=k):
 
     return quad(mdf,0,maxz,args=(a,r0,lambdaem,n))[0]*np.pi
 
-def vol2dict(b,k=k):
+def vol2dict(b,mdf=k):
     w0=b['w0'].value
     n = b['n'].value
     a=b['a'].value
     r0=b['r0'].value
     lambdaem=b['lambdaem'].value
     lambdaex=b['lambdaex'].value
-    return np.pi/2.0*quad(g0,0,maxz,args=(w0,a,r0,lambdaex,lambdaem,n,k))[0]
+    return np.pi/2.0*quad(g0,0,maxz,args=(w0,a,r0,lambdaex,lambdaem,n,mdf))[0]
 
 def g_n(t,D,C,w0,a,r0,lambdaex,lambdaem,n,mdf=k):
-    v1=vol1(a,r0,lambdaem,n,mdf=mdf)**2
+    v1=vol1(a,r0,lambdaem,n,mdf=mdf)
     v12=v1*v1
     v2=vol2(w0,a,r0,lambdaex,lambdaem,n,mdf=mdf)
 
@@ -79,3 +79,135 @@ modelFCS_n = Model(g_n,independent_vars=['t'])
 modelFCS_nt = Model(g_nt,independent_vars=['t'])
 modelFCS_nr = Model(g_n,independent_vars=['t'],mdf=k_real)
 modelFCS_ntr = Model(g_nt,independent_vars=['t'],mdf=k_real)
+
+#####################################################################
+# Combined fit dilutions residual functions
+#####################################################################
+
+def g_all_n(b,t,c,data=None,sigma=None):
+    corr_g=None
+    D=b['D'].value
+    w0=b['w0'].value
+    n = b['n'].value
+    a=b['a'].value
+    r0=b['r0'].value
+    lambdaex=b['lambdaex'].value
+    lambdaem=b['lambdaem'].value
+    slope=b['slope'].value
+
+    for conc in c:
+        C=slope*6.022e-1*b[conc].value
+
+        v1=vol1(a,r0,lambdaem,n)
+        v12=v1*v1
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n)
+
+        print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
+
+        g=1.0+np.array([g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n) for tt in t])/C/v12
+        if corr_g is None:
+            corr_g=g
+        else:
+            corr_g=np.vstack((corr_g,g))
+
+    if data is None:
+        return corr_g
+    corr_res=(corr_g-data)/sigma
+    return corr_res.flatten()
+
+def g_all_nt(b,t,c,data=None,sigma=None):
+    corr_g=None
+    D=b['D'].value
+    w0=b['w0'].value
+    n = b['n'].value
+    a=b['a'].value
+    r0=b['r0'].value
+    lambdaex=b['lambdaex'].value
+    lambdaem=b['lambdaem'].value
+    F=b['F'].value
+    tf=b['tf'].value
+    slope=b['slope'].value
+
+    for conc in c:
+        C=slope*6.022e-1*b[conc].value
+
+        v1=vol1(a,r0,lambdaem,n)
+        v12=v1*v1
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n)
+
+        print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
+
+        g=1.0+np.array([(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n) for tt in t])/C/v12
+        if corr_g is None:
+            corr_g=g
+        else:
+            corr_g=np.vstack((corr_g,g))
+
+    if data is None:
+        return corr_g
+    corr_res=(corr_g-data)/sigma
+    return corr_res.flatten()
+
+def g_all_nr(b,t,c,data=None,sigma=None):
+    corr_g=None
+    D=b['D'].value
+    w0=b['w0'].value
+    n = b['n'].value
+    a=b['a'].value
+    r0=b['r0'].value
+    lambdaex=b['lambdaex'].value
+    lambdaem=b['lambdaem'].value
+    slope=b['slope'].value
+
+    for conc in c:
+        C=slope*6.022e-1*b[conc].value
+
+        v1=vol1(a,r0,lambdaem,n,mdf=k_real)
+        v12=v1*v1
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,mdf=k_real)
+
+        print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
+
+        g=1.0+np.array([g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,k_real) for tt in t])/C/v12
+        if corr_g is None:
+            corr_g=g
+        else:
+            corr_g=np.vstack((corr_g,g))
+
+    if data is None:
+        return corr_g
+    corr_res=(corr_g-data)/sigma
+    return corr_res.flatten()
+
+def g_all_ntr(b,t,c,data=None,sigma=None):
+    corr_g=None
+    D=b['D'].value
+    w0=b['w0'].value
+    n = b['n'].value
+    a=b['a'].value
+    r0=b['r0'].value
+    lambdaex=b['lambdaex'].value
+    lambdaem=b['lambdaem'].value
+    F=b['F'].value
+    tf=b['tf'].value
+    slope=b['slope'].value
+
+    for conc in c:
+        C=slope*6.022e-1*b[conc].value
+
+        v1=vol1(a,r0,lambdaem,n,mdf=k_real)
+        v12=v1*v1
+        v2=vol2(w0,a,r0,lambdaex,lambdaem,n,mdf=k_real)
+
+        print "w0 = ",w0,"R0 = ",r0,"c = ",C,"vol",v1*v1/v2,"slope",slope
+
+        g=1.0+np.array([(1-F+F*np.exp(-tt/tf))/(1-F)*g_hermite(tt,D,w0,a,r0,lambdaex,lambdaem,n,mdf=k_real) for tt in t])/C/v12
+        if corr_g is None:
+            corr_g=g
+        else:
+            corr_g=np.vstack((corr_g,g))
+
+    if data is None:
+        return corr_g
+    corr_res=(corr_g-data)/sigma
+    return corr_res.flatten()
