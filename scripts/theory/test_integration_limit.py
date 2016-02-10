@@ -35,7 +35,7 @@ gn=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33,mdf=k)
+                1.33,cef=k)
 
 print "gn(0): ",gn[0]
 
@@ -47,7 +47,7 @@ gnr=g_n_norm(t,final_para['D'][4],
                 final_para['r0'][4],
                 final_para['lambdaex'][4],
                 final_para['lambdaem'][4],
-                1.33, mdf=k_real)
+                1.33, cef=k_real)
 
 print "gnr(0): ",gnr[0]
 

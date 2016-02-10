@@ -32,7 +32,7 @@ print "lambdaem: ",final_para['lambdaem'][4]
 print "vol1: ",vol1(final_para['a'][4],
            final_para['r0'][4],
            final_para['lambdaem'][4],
-           1.33,mdf=k_real)
+           1.33,cef=k_real)
 
 print "vol1r: ",vol1r(final_para['a'][4],
            final_para['r0'][4],
@@ -44,7 +44,7 @@ v2 = vol2(final_para['w0'][4],
            final_para['r0'][4],
            final_para['lambdaex'][4],
            final_para['lambdaem'][4],
-           1.33, mdf=k_real)
+           1.33, cef=k_real)
 
 print "v2: ",v2
 

@@ -13,7 +13,6 @@ import pickle
 import collections
 
 from FCS_Models_reversed import g_oligo_all,g_oligo_all_n,k_real,fitnoise
-#from GaussianModels_old import g_oligo_all,g_oligo_all_n
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
