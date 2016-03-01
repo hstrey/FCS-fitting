@@ -5,7 +5,8 @@ import math as m
 import matplotlib.pyplot as plt
 import time
 
-from fcsfit.FCS_Models import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, vol1, vol2, g_t, g_n, g, g_nt
+from fcsfit.gaussian import modelFCS_t, modelFCS
+from fcsfit.realistic_reversed import modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -27,18 +28,18 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../Dilutions/'
+datadir='../data/dilutions/'
 
 data3dGaussian=pd.DataFrame({})
 data3dGaussianTriplet=pd.DataFrame({})
 dataNumerical=pd.DataFrame({})
 dataNumericalTriplet=pd.DataFrame({})
 
-experiments=pd.read_table(datadir+'B4R4.txt')
+experiments=pd.read_table(datadir+'BSRS.txt')
 
 for i in range(len(experiments)):
     filename=experiments['filename'][i]
-    logfile=open(datadir+filename+'B4R4.log',"w")
+    logfile=open(datadir+filename+'BSRS.log',"w")
     corrSet=pd.read_csv(datadir+filename+'.csv')
     
     #data set for fitting mean square displacements
@@ -195,15 +196,15 @@ for i in range(len(experiments)):
         plt.semilogx(corrData['delta_t'],fitNoise)
         plt.ylabel('sigma')
         plt.xlabel('delta t in sec')
-        plt.savefig(datadir+filename+color+'B4R4.png', bbox_inches='tight')
-        plt.savefig(datadir+filename+color+'B4R4.pdf', bbox_inches='tight')
+        plt.savefig(datadir+filename+color+'BSRS.png', bbox_inches='tight')
+        plt.savefig(datadir+filename+color+'BSRS.pdf', bbox_inches='tight')
     logfile.close()
 plt.show()
 
-data3dGaussian.to_csv(datadir+'gaussian_B4R4.csv')
-data3dGaussianTriplet.to_csv(datadir+'gaussian_triplet_B4R4.csv')
-dataNumerical.to_csv(datadir+'Numerical_B4R4.csv')
-dataNumericalTriplet.to_csv(datadir+'NumericalTriplet_B4R4.csv')
+data3dGaussian.to_csv(datadir+'gaussian_BSRS.csv')
+data3dGaussianTriplet.to_csv(datadir+'gaussian_triplet_BSRS.csv')
+dataNumerical.to_csv(datadir+'Numerical_BSRS.csv')
+dataNumericalTriplet.to_csv(datadir+'NumericalTriplet_BSRS.csv')
 
 endtime=time.time()
 
