@@ -29,12 +29,12 @@ def makeResultDataFrame(modelfit,dataset={}):
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
 datadir_all='../data/dilutions/'
-parafile="B4R4"
+parafile="BSRS"
 
-data3dG=pd.read_csv(datadir+'gaussian_'+parafile+'.csv')
-data3dGT=pd.read_csv(datadir+'gaussian_triplet_'+parafile+'.csv')
-dataN=pd.read_csv(datadir+'Numerical_'+parafile+'.csv')
-dataNT=pd.read_csv(datadir+'NumericalTriplet_'+parafile+'.csv')
+data3dG=pd.read_csv(datadir_all+'gaussian_'+parafile+'.csv')
+data3dGT=pd.read_csv(datadir_all+'gaussian_triplet_'+parafile+'.csv')
+dataN=pd.read_csv(datadir_all+'Numerical_'+parafile+'.csv')
+dataNT=pd.read_csv(datadir_all+'NumericalTriplet_'+parafile+'.csv')
 
 paraPickleFile=open(datadir+'corr_average_rev2.pkl',"w")
 
@@ -43,7 +43,7 @@ for color in ['B','R']:
     std_list=[]
     c=[]
     b=Parameters()
-    experiments=pd.read_table(datadir+'Some'+color+'.txt')
+    experiments=pd.read_table(datadir+'Some'+color+'S.txt')
     logfile=open(datadir+color+'_'+parafile+'_rev.log',"w")
     for i in range(len(experiments)):
         filename=experiments['filename'][i]
@@ -77,7 +77,7 @@ for color in ['B','R']:
     bG.add('D',experiments['diffcoef'+color][0],vary=False)    
     bG.add('wxy',value=0.25,vary=True)
     bG.add('wz',value=0.7,vary=True)
-    bG.add('slope',value=1.0,vary=True)
+    bG.add('slope',value=1.0,vary=False)
 
     # fit 3-d Gaussian
     resultG=minimize(g_all,bG,args=(corrData['delta_t'],c,data,std))
@@ -118,7 +118,7 @@ for color in ['B','R']:
     bN.add('lambdaex',experiments['lambdaex'+color+'(nm)'][0]/1000.0,vary=False)
     bN.add('lambdaem',experiments['lambdaem'+color+'(nm)'][0]/1000.0,vary=False)
     bN.add('n',experiments['n'][0],vary=False)
-    bN.add('slope',value=1.0,vary=True)
+    bN.add('slope',value=1.0,vary=False)
     
     # fit numerical model
     resultN=minimize(g_all_n,bN,args=(corrData['delta_t'],c,data,std))

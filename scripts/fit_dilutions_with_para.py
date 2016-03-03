@@ -35,7 +35,7 @@ def makeResultDataFrame(modelfit,dataset={}):
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
 datadir_all='../data/dilutions/'
-parafile="B4R4"
+parafile="BSRS"
 
 # load the parameters for each fit from the pickle file
 # there are 6 parameter objects per color 3dG, 3dGt, n, nt, nr, ntr

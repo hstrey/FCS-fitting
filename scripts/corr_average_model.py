@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import time
 
 from fcsfit.gaussian import modelFCS_t, modelFCS
-from fcsfit.realistic_reversed import modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt
+from fcsfit.realistic_reversed import modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt, vol1dict, vol2dict
+from fcsfit.common import k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
     if isinstance(modelfit, Parameters):
@@ -29,17 +30,18 @@ def makeResultDataFrame(modelfit,dataset={}):
 starttime=time.time()
 #defines the location of the data
 datadir='../data/dilutions/'
+parafile="BSRS"
 
 data3dGaussian=pd.DataFrame({})
 data3dGaussianTriplet=pd.DataFrame({})
 dataNumerical=pd.DataFrame({})
 dataNumericalTriplet=pd.DataFrame({})
 
-experiments=pd.read_table(datadir+'BSRS.txt')
+experiments=pd.read_table(datadir+parafile+'.txt')
 
 for i in range(len(experiments)):
     filename=experiments['filename'][i]
-    logfile=open(datadir+filename+'BSRS.log',"w")
+    logfile=open(datadir+filename+parafile+'.log',"w")
     corrSet=pd.read_csv(datadir+filename+'.csv')
     
     #data set for fitting mean square displacements
@@ -76,7 +78,7 @@ for i in range(len(experiments)):
         
         print resultG.fit_report()
         logfile.write(resultG.fit_report()+'\n')
-        fitFCS=g(t=corrData['delta_t'],**resultG.values)
+        fitFCS=resultG.best_fit
         
         #create a new row of data and append to result
         datasetG=makeResultDataFrame(resultG,{'dataset':filename,'color':color,'v':resultG.values['wxy']**2*resultG.values['wz']*m.pi**1.5})
@@ -95,7 +97,7 @@ for i in range(len(experiments)):
         print resultS.fit_report()
         logfile.write(resultS.fit_report()+'\n')
        
-        fitFCST=g_t(t=corrData['delta_t'],**resultS.values)
+        fitFCST=resultS.best_fit
         
         #create a new row of data and append to result
         datasetT=makeResultDataFrame(resultS,{'dataset':filename,'color':color,'v':resultS.values['wxy']**2*resultS.values['wz']*m.pi**1.5})
@@ -119,11 +121,11 @@ for i in range(len(experiments)):
             
         print resultN.fit_report()
         logfile.write(resultN.fit_report()+'\n')
-        v1=vol1(**resultN.values)
-        v2=vol2(**resultN.values)
+        v1=vol1dict(resultN.params,cef=k_real)
+        v2=vol2dict(resultN.params,cef=k_real)
         print "Volume = ",v1*v1/v2
         
-        fitFCSN=g_n(t=corrData['delta_t'],**resultN.values)
+        fitFCSN=resultN.best_fit
         
         datasetN=makeResultDataFrame(resultN,{'dataset':filename,'color':color,'v':v1*v1/v2})
         dataNumerical=dataNumerical.append(datasetN,ignore_index=True)
@@ -145,11 +147,11 @@ for i in range(len(experiments)):
             
         print resultNT.fit_report()
         logfile.write(resultNT.fit_report()+'\n')
-        v1=vol1(**resultNT.values)
-        v2=vol2(**resultNT.values)
+        v1=vol1dict(resultNT.params,cef=k_real)
+        v2=vol2dict(resultNT.params,cef=k_real)
         print "Volume = ",v1*v1/v2
         
-        fitFCSNT=g_nt(t=corrData['delta_t'],**resultNT.values)
+        fitFCSNT=resultNT.best_fit
         
         datasetNT=makeResultDataFrame(resultNT,{'dataset':filename,'color':color,'v':v1*v1/v2})
         dataNumericalTriplet=dataNumericalTriplet.append(datasetNT,ignore_index=True)
@@ -196,15 +198,15 @@ for i in range(len(experiments)):
         plt.semilogx(corrData['delta_t'],fitNoise)
         plt.ylabel('sigma')
         plt.xlabel('delta t in sec')
-        plt.savefig(datadir+filename+color+'BSRS.png', bbox_inches='tight')
-        plt.savefig(datadir+filename+color+'BSRS.pdf', bbox_inches='tight')
+        plt.savefig(datadir+filename+color+parafile+'.png', bbox_inches='tight')
+        plt.savefig(datadir+filename+color+parafile+'.pdf', bbox_inches='tight')
     logfile.close()
 plt.show()
 
-data3dGaussian.to_csv(datadir+'gaussian_BSRS.csv')
-data3dGaussianTriplet.to_csv(datadir+'gaussian_triplet_BSRS.csv')
-dataNumerical.to_csv(datadir+'Numerical_BSRS.csv')
-dataNumericalTriplet.to_csv(datadir+'NumericalTriplet_BSRS.csv')
+data3dGaussian.to_csv(datadir+'gaussian_'+parafile+'.csv')
+data3dGaussianTriplet.to_csv(datadir+'gaussian_triplet_'+parafile+'.csv')
+dataNumerical.to_csv(datadir+'Numerical_'+parafile+'.csv')
+dataNumericalTriplet.to_csv(datadir+'NumericalTriplet_'+parafile+'.csv')
 
 endtime=time.time()
 
