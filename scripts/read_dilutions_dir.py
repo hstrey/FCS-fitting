@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 
 #defines the location of the data
-datadir='../sample data/dilution/'
+datadir='../data/dilutions/RAW/'
 
 def read_corrfile(file):
     with open(file,'r') as f:
@@ -64,12 +64,20 @@ for filestart in groups:
         corrfcts=pd.DataFrame(np.array(corrfcts[:-1]),columns=['delta_t','corrAB','corrBA','corrCD','corrDC'])
         corr_arrayb.extend([corrfcts['corrAB'],corrfcts['corrBA']])
         corr_arrayr.extend([corrfcts['corrCD'],corrfcts['corrDC']])
-            
-    corr_meanb = np.mean(corr_arrayb,axis=0)
-    corr_meanr = np.mean(corr_arrayr,axis=0)
-    corr_stdb = np.std(corr_arrayb,axis=0)
-    corr_stdr = np.std(corr_arrayr,axis=0)
-    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanb, 'stdB':corr_stdb,'meanR':corr_meanr, 'stdR':corr_stdr}
+
+    corr_arrayb=np.array(corr_arrayb)
+    corr_arrayr=np.array(corr_arrayr)
+
+    corr_meanB = np.mean(corr_arrayb,axis=0)
+    corr_meanR = np.mean(corr_arrayr,axis=0)
+
+    corr_stdB = np.std(corr_arrayb,axis=0)
+    corr_stdR = np.std(corr_arrayr,axis=0)
+
+    corr_stderrB = corr_stdB*np.sqrt(corr_arrayb.shape[0]) # calculate stderr
+    corr_stderrR = corr_stdR*np.sqrt(corr_arrayr.shape[0]) # calculate stderr
+
+    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanB, 'stdB':corr_stdB,'stderrB':corr_stderrB,'meanR':corr_meanR, 'stdR':corr_stdR,'stderrR':corr_stderrR}
     df=pd.DataFrame(d)
     print df
     df.to_csv(datadir+filestart+'.csv',index=False)
