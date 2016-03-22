@@ -1,15 +1,17 @@
 import numpy as np
-from common import k,k_real
-from realistic_reversed import vol1,vol2
+from common import k,k_real,xh,yh,maxz,w2
+from realistic_reversed import vol1,vol2,g_hermite
+from lmfit import Model
+from scipy.integrate import quad
 
 def gc_noexp(eta,xi,t,D,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
     return np.sqrt(np.pi)*k(eta-np.sqrt(D*t)*xi+dz/2.0,a1,R1,lambdaem1,n)*k(eta+np.sqrt(D*t)*xi-dz/2.0,a2,R2,lambdaem2,n)/(8*D*t+w2(eta-np.sqrt(D*t)*xi+dz/2.0,w11,lambdaex1,n)+w2(eta+np.sqrt(D*t)*xi-dz/2.0,w22,lambdaex2,n))
 
-def gc_hermite(t,D,w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
-    return np.sum([gcz1(x,t,D,w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k) for x in xh]*yh)
+def gc_hermite(t,D,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
+    return np.sum([gcz1(x,t,D,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k) for x in xh]*yh)
 
-def gcz1(xi,t,D,w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
-    return quad(gc_noexp,-maxz,maxz,args=(xi,t,D,w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
+def gcz1(xi,t,D,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
+    return quad(gc_noexp,-maxz,maxz,args=(xi,t,D,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
 
 def g0c(z,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
     return k(z+dz/2.0,a1,R1,lambdaem1,n)*k(z-dz/2.0,a2,R2,lambdaem2,n)/np.sqrt(w2(z+dz/2.0,w11,lambdaex1,n))/np.sqrt(w2(z-dz/2.0,w22,lambdaex2,n))
@@ -17,20 +19,20 @@ def g0c(z,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
 def g0f(z,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k):
     return k(z+dz/2.0,a1,R1,lambdaem1,n)*k(z-dz/2.0,a2,R2,lambdaem2,n)/np.sqrt(w2(z,w11,lambdaex1,n))/np.sqrt(w2(z,w22,lambdaex2,n))
 
-def vol2c(w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k=k):
-    return np.pi/4.0*quad(g0c,-maxz-10.0,maxz+10.0,args=(w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
+def vol2c(w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k=k):
+    return np.pi/4.0*quad(g0c,-maxz-10.0,maxz+10.0,args=(w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
 
-def vol2f(w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k=k):
-    return np.pi/4.0*quad(g0f,-maxz-10.0,maxz+10.0,args=(w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
+def vol2f(w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k=k):
+    return np.pi/4.0*quad(g0f,-maxz-10.0,maxz+10.0,args=(w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,k))[0]
 
-def g_nc(t,D,C,w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,cef=k):
+def g_nc(t,D,C,w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,cef=k):
 
     v1=vol1(a1,R1,lambdaem1,n,cef=cef)
     v2=vol1(a2,R2,lambdaem2,n,cef=cef)
 
-    print "w1 = ",w1,"w2 = ",w2,"R1 = ",R1,"R2 = ",R2,"c = ",C, "vol1 = ",v1,"vol 2 = ",v2
+    print "w1 = ",w11,"w2 = ",w22,"R1 = ",R1,"R2 = ",R2,"c = ",C, "vol1 = ",v1,"vol 2 = ",v2
 
-    return 1.0+np.array([gc_hermite(tt, D, w1,w2,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,cef)[0] for tt in t])/C/6.022e-1/v1/v2/2.0
+    return 1.0+np.array([gc_hermite(tt, D, w11,w22,a1,a2,R1,R2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,dz,cef)[0] for tt in t])/C/6.022e-1/v1/v2/2.0
 
 modelFCS_nc = Model(g_nc,independent_vars=['t'])
 modelFCS_nrc = Model(g_nc,independent_vars=['t'],k=k_real)

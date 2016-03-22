@@ -13,19 +13,19 @@ def g_oligo_all(b,t,data=None,sigma=None):
     tf_b=b['tf_b'].value
     tf_r=b['tf_r'].value
 
-    vb=wxy_b*wxy_b*wz_b*m.pi**1.5
+    vb=wxy_b*wxy_b*wz_b*np.pi**1.5
     N=6.022e-1*C*vb
     g=1.0+(1-F_b+F_b*np.exp(-t/tf_b))/(1-F_b)/N/(1+4*D*t/wxy_b/wxy_b)/np.sqrt(1+4*D*t/wz_b/wz_b)
     corr_g=g[:]
 
-    vr=wxy_r*wxy_r*wz_r*m.pi**1.5
+    vr=wxy_r*wxy_r*wz_r*np.pi**1.5
     N=6.022e-1*C*vr
     g=1.0+(1-F_r+F_r*np.exp(-t/tf_r))/(1-F_r)/N/(1+4*D*t/wxy_r/wxy_r)/np.sqrt(1+4*D*t/wz_r/wz_r)
     corr_g=np.vstack((corr_g,g[:]))
 
     wxysq=wxy_r*wxy_r+wxy_b*wxy_b
     wzsq=wz_r*wz_r+wz_b*wz_b
-    vcorr=2*wxy_b*wxy_b*wxy_r*wxy_r/wxysq*np.sqrt(2*wz_b*wz_b*wz_r*wz_r/wzsq)*m.pi**1.5
+    vcorr=2*wxy_b*wxy_b*wxy_r*wxy_r/wxysq*np.sqrt(2*wz_b*wz_b*wz_r*wz_r/wzsq)*np.pi**1.5
     N=6.022e-1*C*vcorr
     g=1+1/N/(1+8*D*t/wxysq)/np.sqrt(1+8*D*t/wzsq)*np.exp(-delta_z*delta_z/(8*D*t+wzsq))
     corr_g=np.vstack((corr_g,g))

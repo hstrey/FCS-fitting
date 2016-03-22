@@ -2,18 +2,18 @@
     # function evals   = 19
     # data points      = 558
     # variables        = 3
-    chi-square         = 1281.802
-    reduced chi-square = 2.310
+    chi-square         = 2145.387
+    reduced chi-square = 3.866
 [[Variables]]
-    D:            68.8191974 +/- 0.445350 (0.65%) (init= 70)
-    C:            2.37270367 +/- 0.006525 (0.28%) (init= 2)
-    delta_z:      1.10746593 +/- 0.006491 (0.59%) (init= 1.5)
-    w0_b:         0.192295 (fixed)
-    w0_r:         0.3302926 (fixed)
+    D:            68.3694542 +/- 0.575992 (0.84%) (init= 70)
+    C:            2.30954393 +/- 0.008230 (0.36%) (init= 2)
+    delta_z:      1.09638622 +/- 0.008638 (0.79%) (init= 0.5)
+    w0_b:         0.1845683 (fixed)
+    w0_r:         0.3263966 (fixed)
     a_b:          0.522 (fixed)
     a_r:          0.652 (fixed)
-    r0_b:         0.1254128 (fixed)
-    r0_r:         0.1430996 (fixed)
+    r0_b:         0.1335554 (fixed)
+    r0_r:         0.147172 (fixed)
     lambdaex_b:   0.488 (fixed)
     lambdaem_b:   0.519 (fixed)
     lambdaex_r:   0.633 (fixed)

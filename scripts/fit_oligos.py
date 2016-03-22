@@ -12,11 +12,13 @@ import matplotlib.pyplot as plt
 import pickle
 import collections
 
-from FCS_Models_reversed import g_oligo_all,g_oligo_all_n,k_real,fitnoise
+from fcsfit.common import k_real, fitnoise
+from fcsfit.gaussian_oligo import g_oligo_all
+from fcsfit.realistic_rev_oligo import g_oligo_all_n
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-datadir_all='../dilutions/'
+datadir_all='../data/dilutions/'
 oligodir='../data/oligos/'
 datafile='OL100ace'
 
@@ -65,7 +67,7 @@ stdB_fit=fitnoise(t,corrData['stdB'])
 stdR_fit=fitnoise(t,corrData['stdR'])
 stdBR_fit=fitnoise(t,corrData['stdBR'])
 dataStd=np.array([corrData['stdB'],corrData['stdR'],corrData['stdBR']])
-dataStd=np.array([stdB_fit,stdR_fit,stdBR_fit])
+dataStd_fit=np.array([stdB_fit,stdR_fit,stdBR_fit])
 
 # save data, stderr and fitnoise just in case
 datadict['t']=t
@@ -98,7 +100,7 @@ if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     b.add('wxy_b',value=bBlue['wxy'].value,vary=False)
     b.add('wxy_r',value=bRed['wxy'].value,vary=False)
 
-    out=minimize(g_oligo_all,b,args=(t,data,dataStd))
+    out=minimize(g_oligo_all,b,args=(t,data,dataStd_fit))
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
     gfit_all=g_oligo_all(b,t)
@@ -117,9 +119,9 @@ elif (5>=bluePick>=2) and (5>=redPick>=2):
     b.add('n',value=bBlue['n'].value,vary=False)
     
     if (bluePick==4 or bluePick==5):
-        out=minimize(g_oligo_all_n,b,args=(t,data,dataStd,k_real))
+        out=minimize(g_oligo_all_n,b,args=(t,data,dataStd_fit,k_real))
     else:
-        out=minimize(g_oligo_all_n,b,args=(t,data,dataStd))
+        out=minimize(g_oligo_all_n,b,args=(t,data,dataStd_fit))
         
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
@@ -134,13 +136,13 @@ dataFits=pd.DataFrame(datadict)
 dataFits.to_csv(datadir_all+'oligo_fits_'+str(bluePick)+'_'+str(redPick)+'.csv')
 
 plt.figure()
+plt.title('Oligo Fit')
 
 plt.subplot(3,1,1)
 plt.errorbar(t,data[0],yerr=dataStd[0],fmt='ob')
 plt.plot(t,gfit_all[0],color='r')
 plt.xscale('log')
 plt.ylabel('Blue g(t)')
-plt.title('Oligo Gaussian Fit B3R6')
 
 plt.subplot(3,1,2)
 plt.errorbar(t,data[1],yerr=dataStd[1],fmt='or')
@@ -155,4 +157,5 @@ plt.xscale('log')
 plt.ylabel('Blue-Red g(t)')
 plt.savefig(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.png', bbox_inches='tight')
 plt.savefig(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.pdf', bbox_inches='tight')
-    
+plt.show()
+
