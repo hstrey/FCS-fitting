@@ -29,30 +29,33 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../data/dilutions/'
-parafile="BSRS"
+datadir='../data/dilutions/RAW/'
+parafile="S"
 
 data3dGaussian=pd.DataFrame({})
 data3dGaussianTriplet=pd.DataFrame({})
 dataNumerical=pd.DataFrame({})
 dataNumericalTriplet=pd.DataFrame({})
 
-experiments=pd.read_table(datadir+parafile+'.txt')
+logfile=open(datadir+parafile+'.log',"w")
 
-for i in range(len(experiments)):
-    filename=experiments['filename'][i]
-    logfile=open(datadir+filename+parafile+'.log',"w")
-    corrSet=pd.read_csv(datadir+filename+'.csv')
-    
-    #data set for fitting mean square displacements
-    corrData=corrSet[corrSet['delta_t']>=1e-7]
-    corrData=corrData[corrData['delta_t']<=1e-2]
-    
-    for color in ['B','R']:
-        
+for color in ['B','R']:
+
+    experiments=pd.read_table(datadir+color+parafile+'.txt')
+    print experiments
+
+    for i in range(len(experiments)):
+        filename=experiments['filename'][i]
+        print filename
+        corrSet=pd.read_csv(datadir+filename+'.csv')
+
+        #data set for fitting mean square displacements
+        corrData=corrSet[corrSet['delta_t']>=1e-7]
+        corrData=corrData[corrData['delta_t']<=1e-2]
+
         # get all the parameters from the file
         dataName='mean'+color
-        stdName='std'+color
+        stdName='stderr'+color
         conc=experiments['conc'+color+'(nM)'][i]
         diffC=experiments['diffcoef'+color][i]
         lambdaem=experiments['lambdaem'+color+'(nm)'][i]/1000.0
@@ -60,7 +63,7 @@ for i in range(len(experiments)):
         a=experiments['fiber'+color+'(microns)'][i]
         print '*** dataset: ',filename,'color: ',color,'conc: ',conc,'diffC: ',diffC
         logfile.write('Color: '+color+'\n')
-        
+
         # calculate fit to data and fit to noise
         logdata=np.log10(corrData[stdName])
         logt=np.log10(corrData['delta_t'])
@@ -75,15 +78,15 @@ for i in range(len(experiments)):
             wz=1.0,
             D=Parameter(value=diffC, vary = False),
             weights=1./fitNoise)
-        
+
         print resultG.fit_report()
         logfile.write(resultG.fit_report()+'\n')
         fitFCS=resultG.best_fit
-        
+
         #create a new row of data and append to result
         datasetG=makeResultDataFrame(resultG,{'dataset':filename,'color':color,'v':resultG.values['wxy']**2*resultG.values['wz']*m.pi**1.5})
         data3dGaussian=data3dGaussian.append(datasetG,ignore_index=True)
-        
+
         # then refit the FCS data using the noise as sigma
         resultS = modelFCS_t.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
@@ -93,12 +96,12 @@ for i in range(len(experiments)):
             tf=Parameter(5e-7,vary=True, min=1e-9, max=1e-4),
             D=Parameter(value=diffC, vary = False),
             weights=1./fitNoise)
-            
+
         print resultS.fit_report()
         logfile.write(resultS.fit_report()+'\n')
-       
+
         fitFCST=resultS.best_fit
-        
+
         #create a new row of data and append to result
         datasetT=makeResultDataFrame(resultS,{'dataset':filename,'color':color,'v':resultS.values['wxy']**2*resultS.values['wz']*m.pi**1.5})
         data3dGaussianTriplet=data3dGaussianTriplet.append(datasetT,ignore_index=True)
@@ -107,34 +110,34 @@ for i in range(len(experiments)):
         resultN = modelFCS_nr.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
             w0=0.25,
-#            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
-#            tf=1e-7,
+    #            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
+    #            tf=1e-7,
             r0=0.16,
-#            F=Parameter(value=resultS.values['F'],min=0.0,max=0.5,vary=True),
-#            tf=resultS.values['tf'],
+    #            F=Parameter(value=resultS.values['F'],min=0.0,max=0.5,vary=True),
+    #            tf=resultS.values['tf'],
             n=Parameter(value=1.33, vary=False),
             D=Parameter(value=diffC, vary = False),
             a=Parameter(value=a,vary=False),
             lambdaem=Parameter(value=lambdaem,vary=False),
             lambdaex=Parameter(value=lambdaex,vary=False),
             weights=1./fitNoise)
-            
+
         print resultN.fit_report()
         logfile.write(resultN.fit_report()+'\n')
         v1=vol1dict(resultN.params,cef=k_real)
         v2=vol2dict(resultN.params,cef=k_real)
         print "Volume = ",v1*v1/v2
-        
+
         fitFCSN=resultN.best_fit
-        
+
         datasetN=makeResultDataFrame(resultN,{'dataset':filename,'color':color,'v':v1*v1/v2})
         dataNumerical=dataNumerical.append(datasetN,ignore_index=True)
 
         resultNT = modelFCS_ntr.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
             w0=Parameter(value=resultN.values['w0'],vary=True),
-#            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
-#            tf=1e-7,
+    #            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
+    #            tf=1e-7,
             r0=Parameter(value=resultN.values['r0'],vary=True),
             F=Parameter(value=0.02,min=0.0,max=0.5,vary=True),
             tf=Parameter(value=5e-7,vary=True, min=1e-9, max=1e-4),
@@ -144,15 +147,15 @@ for i in range(len(experiments)):
             lambdaem=Parameter(value=lambdaem,vary=False),
             lambdaex=Parameter(value=lambdaex,vary=False),
             weights=1./fitNoise)
-            
+
         print resultNT.fit_report()
         logfile.write(resultNT.fit_report()+'\n')
         v1=vol1dict(resultNT.params,cef=k_real)
         v2=vol2dict(resultNT.params,cef=k_real)
         print "Volume = ",v1*v1/v2
-        
+
         fitFCSNT=resultNT.best_fit
-        
+
         datasetNT=makeResultDataFrame(resultNT,{'dataset':filename,'color':color,'v':v1*v1/v2})
         dataNumericalTriplet=dataNumericalTriplet.append(datasetNT,ignore_index=True)
 
@@ -165,7 +168,7 @@ for i in range(len(experiments)):
         plt.xlabel('delta t in sec')
         plt.ylabel('g(t) '+color)
         plt.legend(frameon=False)
-        
+
         plt.subplot(3,2,2)
         plt.errorbar(corrData['delta_t'],corrData[dataName],yerr=fitNoise,fmt="ob")
         plt.plot(corrData['delta_t'],fitFCSN,"g",label='Numerical')
@@ -174,13 +177,13 @@ for i in range(len(experiments)):
         plt.xlabel('delta t in sec')
         plt.ylabel('g(t) '+color)
         plt.legend(frameon=False)
-        
+
         plt.subplot(3,2,3)
         plt.semilogx(corrData['delta_t'],resultG.residual,"g")
         plt.semilogx(corrData['delta_t'],resultS.residual,"r")
         plt.xlabel('delta t in sec')
         plt.ylabel('residuals')
-      
+
         plt.subplot(3,2,4)
         plt.semilogx(corrData['delta_t'],resultN.residual,"g")
         plt.semilogx(corrData['delta_t'],resultNT.residual,"r")
@@ -192,7 +195,7 @@ for i in range(len(experiments)):
         plt.loglog(corrData['delta_t'],fitNoise)
         plt.ylabel('sigma')
         plt.xlabel('delta t in sec')
-        
+
         plt.subplot(3,2,6)
         plt.semilogx(corrData['delta_t'],corrData[stdName],"ob")
         plt.semilogx(corrData['delta_t'],fitNoise)
@@ -200,7 +203,7 @@ for i in range(len(experiments)):
         plt.xlabel('delta t in sec')
         plt.savefig(datadir+filename+color+parafile+'.png', bbox_inches='tight')
         plt.savefig(datadir+filename+color+parafile+'.pdf', bbox_inches='tight')
-    logfile.close()
+logfile.close()
 plt.show()
 
 data3dGaussian.to_csv(datadir+'gaussian_'+parafile+'.csv')
