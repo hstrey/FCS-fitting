@@ -41,8 +41,9 @@ logfile=open(datadir+parafile+'.log',"w")
 
 for color in ['B','R']:
 
+    logfile.write('Color: '+color+'\n')
+
     experiments=pd.read_table(datadir+color+parafile+'.txt')
-    print experiments
 
     for i in range(len(experiments)):
         filename=experiments['filename'][i]
@@ -62,7 +63,6 @@ for color in ['B','R']:
         lambdaex=experiments['lambdaex'+color+'(nm)'][i]/1000.0
         a=experiments['fiber'+color+'(microns)'][i]
         print '*** dataset: ',filename,'color: ',color,'conc: ',conc,'diffC: ',diffC
-        logfile.write('Color: '+color+'\n')
 
         # calculate fit to data and fit to noise
         logdata=np.log10(corrData[stdName])
@@ -106,13 +106,19 @@ for color in ['B','R']:
         datasetT=makeResultDataFrame(resultS,{'dataset':filename,'color':color,'v':resultS.values['wxy']**2*resultS.values['wz']*m.pi**1.5})
         data3dGaussianTriplet=data3dGaussianTriplet.append(datasetT,ignore_index=True)
 
+        if color=='B':
+            w0try=0.18
+            r0try=0.14
+        else:
+            w0try=0.35
+            r0try=0.2
         # then refit the FCS data using a numerical fit
-        resultN = modelFCS_nr.fit(corrData[dataName],t=corrData['delta_t'],
+        resultN = modelFCS_n.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
-            w0=0.25,
+            w0=w0try,
     #            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
     #            tf=1e-7,
-            r0=0.16,
+            r0=r0try,
     #            F=Parameter(value=resultS.values['F'],min=0.0,max=0.5,vary=True),
     #            tf=resultS.values['tf'],
             n=Parameter(value=1.33, vary=False),
@@ -133,7 +139,7 @@ for color in ['B','R']:
         datasetN=makeResultDataFrame(resultN,{'dataset':filename,'color':color,'v':v1*v1/v2})
         dataNumerical=dataNumerical.append(datasetN,ignore_index=True)
 
-        resultNT = modelFCS_ntr.fit(corrData[dataName],t=corrData['delta_t'],
+        resultNT = modelFCS_nt.fit(corrData[dataName],t=corrData['delta_t'],
             C=Parameter(value=conc, vary=False),
             w0=Parameter(value=resultN.values['w0'],vary=True),
     #            F=Parameter(value=0.1,min=0.0,max=0.5,vary=True),
