@@ -28,23 +28,23 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-datadir_all='../data/dilutions/'
-parafile="BSRS"
+datadir_all='../data/dilutions/RAW/'
+parafile="S"
 
 data3dG=pd.read_csv(datadir_all+'gaussian_'+parafile+'.csv')
 data3dGT=pd.read_csv(datadir_all+'gaussian_triplet_'+parafile+'.csv')
 dataN=pd.read_csv(datadir_all+'Numerical_'+parafile+'.csv')
 dataNT=pd.read_csv(datadir_all+'NumericalTriplet_'+parafile+'.csv')
 
-paraPickleFile=open(datadir+'corr_average_rev2.pkl',"w")
+paraPickleFile=open(datadir+'corr_average_all_final.pkl',"w")
 
 for color in ['B','R']:
     data_list=[]
     std_list=[]
     c=[]
     b=Parameters()
-    experiments=pd.read_table(datadir+'Some'+color+'S.txt')
-    logfile=open(datadir+color+'_'+parafile+'_rev.log',"w")
+    experiments=pd.read_table(datadir+color+parafile+"_SOME.txt')
+    logfile=open(datadir+color+'_'+parafile+'_final.log',"w")
     for i in range(len(experiments)):
         filename=experiments['filename'][i]
         corrSet=pd.read_csv(datadir_all+filename+'.csv')

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import time
 
 from fcsfit.gaussian import modelFCS_t, modelFCS
-from fcsfit.realistic_reversed import modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt, vol1dict, vol2dict
+from fcsfit.realistic_reversed import modelFCS_n, modelFCS_nt, vol1dict, vol2dict
 from fcsfit.common import k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
@@ -210,7 +210,6 @@ for color in ['B','R']:
         plt.savefig(datadir+filename+color+parafile+'.png', bbox_inches='tight')
         plt.savefig(datadir+filename+color+parafile+'.pdf', bbox_inches='tight')
 logfile.close()
-plt.show()
 
 data3dGaussian.to_csv(datadir+'gaussian_'+parafile+'.csv')
 data3dGaussianTriplet.to_csv(datadir+'gaussian_triplet_'+parafile+'.csv')
