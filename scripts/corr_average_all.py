@@ -43,7 +43,7 @@ for color in ['B','R']:
     std_list=[]
     c=[]
     b=Parameters()
-    experiments=pd.read_table(datadir+color+parafile+"_SOME.txt')
+    experiments=pd.read_table(datadir+color+parafile+"_SOME.txt")
     logfile=open(datadir+color+'_'+parafile+'_final.log',"w")
     for i in range(len(experiments)):
         filename=experiments['filename'][i]

@@ -34,24 +34,24 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-datadir_all='../data/dilutions/'
-parafile="BSRS"
+datadir_all='../data/dilutions/RAW/'
+parafile="S"
 
 # load the parameters for each fit from the pickle file
 # there are 6 parameter objects per color 3dG, 3dGt, n, nt, nr, ntr
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_rev2.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
         parameters['R'].append(pickle.load(paraPickleFile))
 
-experiments=pd.read_table(datadir_all+parafile+'.txt')
-logfile=open(datadir_all+'fit_dilutions_rev2.log',"w")
+logfile=open(datadir_all+'fit_dilutions_all_final.log',"w")
 parameterDataFrame=pd.DataFrame({})
 datadict={}
 
 for color in parameters:
+    experiments=pd.read_table(datadir_all+color+parafile+'.txt')
     for i in range(len(experiments)):
         filename=experiments['filename'][i]
         corrSet=pd.read_csv(datadir_all+filename+'.csv')
