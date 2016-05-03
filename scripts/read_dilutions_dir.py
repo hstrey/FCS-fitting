@@ -74,8 +74,8 @@ for filestart in groups:
     corr_stdB = np.std(corr_arrayb,axis=0)
     corr_stdR = np.std(corr_arrayr,axis=0)
 
-    corr_stderrB = corr_stdB*np.sqrt(corr_arrayb.shape[0]) # calculate stderr
-    corr_stderrR = corr_stdR*np.sqrt(corr_arrayr.shape[0]) # calculate stderr
+    corr_stderrB = corr_stdB/np.sqrt(corr_arrayb.shape[0]) # calculate stderr
+    corr_stderrR = corr_stdR/np.sqrt(corr_arrayr.shape[0]) # calculate stderr
 
     d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanB, 'stdB':corr_stdB,'stderrB':corr_stderrB,'meanR':corr_meanR, 'stdR':corr_stdR,'stderrR':corr_stderrR}
     df=pd.DataFrame(d)

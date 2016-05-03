@@ -62,10 +62,10 @@ for color in parameters:
         
         # get all the parameters from the file
         dataName='mean'+color
-        stdName='std'+color
+        stderrName='stderr'+color
                 
         data=np.array(corrData[dataName])
-        std=np.array(corrData[stdName])/np.sqrt(20)
+        stderr=np.array(corrData[stderrName])
         t=corrData['delta_t']
         
         conc=experiments['conc'+color+'(nM)'][i]
@@ -77,7 +77,7 @@ for color in parameters:
         logfile.write('Color: '+color+'\n')
         
         # calculate fit to data and fit to noise
-        logdata=np.log10(std)
+        logdata=np.log10(stderr)
         logt=np.log10(corrData['delta_t'])
         pf=np.polyfit(logt,logdata,4)
         p=np.poly1d(pf)
@@ -85,7 +85,7 @@ for color in parameters:
         
         # save data, stderr and fitnoise just in case
         datadict['data_'+filename+'_'+color]=data
-        datadict['std_'+filename+'_'+color]=std
+        datadict['stderr_'+filename+'_'+color]=stderr
         datadict['fitstd_'+filename+'_'+color]=fitNoise
         
         fit=parameters[color][0] # Gaussian fit pickle
@@ -208,6 +208,6 @@ for color in parameters:
     # save the delta time for each color just in case
     datadict['t'+color]=t    
 
-parameterDataFrame.to_csv(datadir_all+"fit_dilutions_rev2.csv")
+parameterDataFrame.to_csv(datadir_all+"fit_dilutions_final.csv")
 dataFits=pd.DataFrame(datadict)
-dataFits.to_csv(datadir_all+'fit_dilutions_plots_rev2.csv')
+dataFits.to_csv(datadir_all+'fit_dilutions_plots_final.csv')
