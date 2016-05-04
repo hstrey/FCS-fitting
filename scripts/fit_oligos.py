@@ -18,7 +18,7 @@ from fcsfit.realistic_rev_oligo import g_oligo_all_n
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-datadir_all='../data/dilutions/'
+datadir_all='../data/dilutions/RAW/'
 oligodir='../data/oligos/'
 datafile='OL100ace'
 
@@ -28,7 +28,7 @@ corrData=pd.read_csv(oligodir+datafile+'.csv')
 
 # load the parameters for each fit from the pickle file
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_rev2.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
@@ -39,21 +39,23 @@ GaussBeam=False
 print """0 = 3D Gauss
 1 = 3D Gauss + triplet
 2 = Gaussian beam
-3 = Gaussian beam + triplet
-4 Gaussian beam k_real
-5 Gaussian beam k_real + triplet"""
+3 = Gaussian beam k_real
+4 = Gaussian beam + triplet
+5 = Gaussian beam k_real + triplet"""
 
 bluePick = int(raw_input("Pick calibration parameter set for Blue channel: "))
 bBlue=parameters['B'][bluePick]
-if bluePick %2: # if triplet
-    bBlue.add('F',value=0.0,vary=False)
-    bBlue.add('tf',value=1e-6,vary=False)
+
+if not (bluePick %2): # if not triplet
+    bBlue.add('F_b',value=0.0,vary=False)
+    bBlue.add('tf_b',value=1e-6,vary=False)
 
 redPick = int(raw_input("Pick calibration parameter set for Red channel: "))
 bRed=parameters['R'][redPick]
-if redPick %2: # if triplet
-    bRed.add('F',value=0.0,vary=False)
-    bRed.add('tf',value=1e-6,vary=False)
+
+if not (redPick %2): # if not triplet
+    bRed.add('F_r',value=0.0,vary=False)
+    bRed.add('tf_r',value=1e-6,vary=False)
 
 logfile=open(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.log',"w")
 
@@ -83,9 +85,10 @@ datadict['oligoBR_stdfit']=stdBR_fit
 
 b=Parameters()
 b.add('D',value=70.0,vary=True)
-b.add('C',value=2.0,vary=True)
-b.add('delta_z',value=0.5,vary=True)
-
+b.add('C',value=2.5,vary=True)
+b.add('delta_z',value=1.0,vary=True)
+2
+# if triplet
 if bluePick%2:
     b.add('F_b',value=bBlue['F'].value,vary=True)
     b.add('tf_b',value=bBlue['tf'].value,vary=True)
@@ -93,6 +96,7 @@ if redPick%2:
     b.add('F_r',value=bRed['F'].value,vary=True)
     b.add('tf_r',value=bRed['tf'].value,vary=True)
 
+# if Gauss3D
 if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     #combine parameters from blue and red into one
     b.add('wz_b',value=bBlue['wz'].value,vary=False)
@@ -104,6 +108,7 @@ if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
     gfit_all=g_oligo_all(b,t)
+
 elif (5>=bluePick>=2) and (5>=redPick>=2):
     #combine parameters from blue and red into one
     b.add('w0_b',value=bBlue['w0'].value,vary=False)
@@ -118,7 +123,7 @@ elif (5>=bluePick>=2) and (5>=redPick>=2):
     b.add('lambdaem_r',value=bRed['lambdaem'].value,vary=False)
     b.add('n',value=bBlue['n'].value,vary=False)
     
-    if (bluePick==4 or bluePick==5):
+    if (bluePick==3 or bluePick==5):
         out=minimize(g_oligo_all_n,b,args=(t,data,dataStd_fit,k_real))
     else:
         out=minimize(g_oligo_all_n,b,args=(t,data,dataStd_fit))
@@ -133,7 +138,7 @@ elif (5>=bluePick>=2) and (5>=redPick>=2):
 
 logfile.close()
 dataFits=pd.DataFrame(datadict)
-dataFits.to_csv(datadir_all+'oligo_fits_'+str(bluePick)+'_'+str(redPick)+'.csv')
+dataFits.to_csv(oligodir+'oligo_fits_'+str(bluePick)+'_'+str(redPick)+'.csv')
 
 plt.figure()
 plt.title('Oligo Fit')
