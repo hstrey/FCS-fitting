@@ -46,22 +46,14 @@ print """0 = 3D Gauss
 bluePick = int(raw_input("Pick calibration parameter set for Blue channel: "))
 bBlue=parameters['B'][bluePick]
 
-if not (bluePick %2): # if not triplet
-    bBlue.add('F_b',value=0.0,vary=False)
-    bBlue.add('tf_b',value=1e-6,vary=False)
-
 redPick = int(raw_input("Pick calibration parameter set for Red channel: "))
 bRed=parameters['R'][redPick]
-
-if not (redPick %2): # if not triplet
-    bRed.add('F_r',value=0.0,vary=False)
-    bRed.add('tf_r',value=1e-6,vary=False)
 
 logfile=open(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.log',"w")
 
 #data set for fitting mean square displacements
 corrData=corrData[corrData['delta_t']>=1e-6]
-corrData=corrData[corrData['delta_t']<=10.0]
+corrData=corrData[corrData['delta_t']<=0.1]
 
 t=corrData['delta_t']
 data=np.array([corrData['meanB'],corrData['meanR'],corrData['meanBR']])
@@ -87,14 +79,21 @@ b=Parameters()
 b.add('D',value=70.0,vary=True)
 b.add('C',value=2.5,vary=True)
 b.add('delta_z',value=1.0,vary=True)
-2
+
 # if triplet
-if bluePick%2:
-    b.add('F_b',value=bBlue['F'].value,vary=True)
-    b.add('tf_b',value=bBlue['tf'].value,vary=True)
-if redPick%2:
-    b.add('F_r',value=bRed['F'].value,vary=True)
-    b.add('tf_r',value=bRed['tf'].value,vary=True)
+if bluePick==1 or bluePick==4 or bluePick==5:
+    b.add('F_b',value=bBlue['F'].value,min=0.0,max=0.5,vary=False)
+    b.add('tf_b',value=bBlue['tf'].value,min=1e-9,max=1e-4,vary=False)
+else:
+    b.add('F_b',0.0,vary=False)
+    b.add('tf_b',1e-6,vary=False)
+
+if bluePick==1 or redPick==4 or redPick==5:
+    b.add('F_r',value=bRed['F'].value,min=0.0,max=0.5,vary=False)
+    b.add('tf_r',value=bRed['tf'].value,min=1e-9,max=1e-4,vary=False)
+else:
+    b.add('F_r',0.0,vary=False)
+    b.add('tf_r',1e-6,vary=False)
 
 # if Gauss3D
 if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
@@ -160,7 +159,7 @@ plt.errorbar(t,data[2],yerr=dataStd[2],fmt='co')
 plt.plot(t,gfit_all[2])
 plt.xscale('log')
 plt.ylabel('Blue-Red g(t)')
-plt.savefig(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.png', bbox_inches='tight')
-plt.savefig(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.pdf', bbox_inches='tight')
+plt.savefig(oligodir+'oligo_'+str(bluePick)+'_'+str(redPick)+'.png', bbox_inches='tight')
+plt.savefig(oligodir+'oligo_'+str(bluePick)+'_'+str(redPick)+'.pdf', bbox_inches='tight')
 plt.show()
 

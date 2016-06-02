@@ -54,13 +54,17 @@ def g_oligo_all_n(b,t,data=None,sigma=None,cef=k):
     n = b['n'].value
     C = 6.022e-1*b['C'].value
     dz=b['delta_z'].value
+    F_b=b['F_b'].value
+    F_r=b['F_r'].value
+    tf_b=b['tf_b'].value
+    tf_r=b['tf_r'].value
 
     #blue correlation
     v1=vol1(a_b,r0_b,lambdaem_b,n,cef=cef)
     v2=vol2(wxy_b,a_b,r0_b,lambdaex_b,lambdaem_b,n,cef=cef)
     vb=v1*v1/v2
 
-    g=1.0+np.array([g_hermite(tt,D,wxy_b,a_b,r0_b,lambdaex_b,lambdaem_b,n,k) for tt in t])/C/v1/v1
+    g=1.0+np.array([(1-F_b+F_b*np.exp(-tt/tf_b))/(1-F_b)*g_hermite(tt,D,wxy_b,a_b,r0_b,lambdaex_b,lambdaem_b,n,k) for tt in t])/C/v1/v1
 #    gDb=np.array(gDb)
     corr_g=g[:]
 
@@ -69,7 +73,7 @@ def g_oligo_all_n(b,t,data=None,sigma=None,cef=k):
     v2=vol2(wxy_r,a_r,r0_r,lambdaex_r,lambdaem_r,n,cef=cef)
     vr=v1*v1/v2
 
-    g=1.0+np.array([g_hermite(tt,D,wxy_r,a_r,r0_r,lambdaex_r,lambdaem_r,n,cef) for tt in t])/C/v1/v1
+    g=1.0+np.array([(1-F_r+F_r*np.exp(-tt/tf_r))/(1-F_b)*g_hermite(tt,D,wxy_r,a_r,r0_r,lambdaex_r,lambdaem_r,n,cef) for tt in t])/C/v1/v1
 #    gDr =np.array(gDr)
     corr_g=np.vstack((corr_g,g[:]))
 
