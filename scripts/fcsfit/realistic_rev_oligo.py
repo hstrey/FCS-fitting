@@ -132,7 +132,7 @@ def g_oligo_all_nc(b,t,data=None,sigma=None,cef=k):
     #cross correlation
     v1=vol1(a_b,r0_b,lambdaem_b,n,cef=cef)
     v2=vol1(a_r,r0_r,lambdaem_r,n,cef=cef)
-    g=1.0+np.array([gc_hermite(tt, D, wxy_b, wxy_r, a_b, a_r, r0_b, r0_r, lambdaex_b,lambdaem_b,lambdaex_r,lambdaem_r,n,dz,cef)[0] for tt in t])/Cc/v1/v2/2.0
+    g=1.0+np.array([gc_hermite(tt, D, wxy_b, wxy_r, a_b, a_r, r0_b, r0_r, lambdaex_b,lambdaem_b,lambdaex_r,lambdaem_r,n,dz,cef) for tt in t])/Cc/v1/v2/2.0
 #    gDc=np.array(gDc)
     corr_g=np.vstack((corr_g,g))
 
