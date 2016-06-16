@@ -28,8 +28,9 @@ def makeResultDataFrame(modelfit,dataset={}):
 
 starttime=time.time()
 #defines the location of the data
-datadir='../062415/50um/dilutions/'
-parameter_file='B4R4'
+datadir='../data/dilutions/RAW/'
+parameter_file='S'
+color="B"
 
 experiments=pd.read_table(datadir+parameter_file+'.txt')
 

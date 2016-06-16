@@ -114,10 +114,10 @@ elif (5>=bluePick>=2) and (5>=redPick>=2):
     #combine parameters from blue and red into one
     b.add('w0_b',value=bBlue['w0'].value,vary=True)
     b.add('w0_r',value=bRed['w0'].value,vary=False)
-    b.add('a_b',value=bBlue['a'].value,vary=True)
+    b.add('a_b',value=bBlue['a'].value,vary=False)
     b.add('a_r',value=bRed['a'].value,vary=False)
-    b.add('r0_b',value=bBlue['r0'].value,vary=False)
-    b.add('r0_r',value=bRed['r0'].value,vary=True)
+    b.add('r0_b',value=bBlue['r0'].value,vary=True)
+    b.add('r0_r',value=bRed['r0'].value,vary=False)
     b.add('lambdaex_b',value=bBlue['lambdaex'].value,vary=False)
     b.add('lambdaem_b',value=bBlue['lambdaem'].value,vary=False)
     b.add('lambdaex_r',value=bRed['lambdaex'].value,vary=False)

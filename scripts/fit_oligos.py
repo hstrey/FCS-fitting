@@ -52,7 +52,7 @@ bRed=parameters['R'][redPick]
 logfile=open(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.log',"w")
 
 #data set for fitting mean square displacements
-corrData=corrData[corrData['delta_t']>=1e-6]
+corrData=corrData[corrData['delta_t']>=1e-5]
 corrData=corrData[corrData['delta_t']<=0.1]
 
 t=corrData['delta_t']
@@ -77,8 +77,8 @@ datadict['oligoBR_stdfit']=stdBR_fit
 
 b=Parameters()
 b.add('D',value=70.0,vary=True)
-b.add('C',value=2.5,vary=True)
-b.add('delta_z',value=1.0,vary=True)
+b.add('C',value=2.0,vary=True)
+b.add('delta_z',value=5.0,vary=True)
 
 # if triplet
 if bluePick==1 or bluePick==4 or bluePick==5:
