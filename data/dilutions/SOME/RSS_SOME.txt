@@ -1,0 +1,4 @@
+filename	concR(nM)	lambdaexR(nm)	lambdaemR(nm)	n	fiberR(microns)	diffcoefR
+OR01562	1.304	633.0	657.0	1.33	0.652	404.98
+OR03125	2.608	633.0	657.0	1.33	0.652	404.98
+OR06250	5.217	633.0	657.0	1.33	0.652	404.98

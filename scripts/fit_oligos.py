@@ -28,7 +28,7 @@ corrData=pd.read_csv(oligodir+datafile+'.csv')
 
 # load the parameters for each fit from the pickle file
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_all_final.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final2.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
@@ -77,8 +77,8 @@ datadict['oligoBR_stdfit']=stdBR_fit
 
 b=Parameters()
 b.add('D',value=70.0,vary=True)
-b.add('C',value=2.0,vary=True)
-b.add('delta_z',value=5.0,vary=True)
+b.add('C',value=2.5,vary=True)
+b.add('delta_z',value=1.0,vary=True)
 
 # if triplet
 if bluePick==1 or bluePick==4 or bluePick==5:
@@ -106,7 +106,7 @@ if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     out=minimize(g_oligo_all,b,args=(t,data,dataStd_fit))
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
-    gfit_all=g_oligo_all(b,t)
+    gfit_all=g_oligo_all(out.params,t)
 
 elif (5>=bluePick>=2) and (5>=redPick>=2):
     #combine parameters from blue and red into one

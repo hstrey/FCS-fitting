@@ -35,18 +35,18 @@ def makeResultDataFrame(modelfit,dataset={}):
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
 datadir_all='../data/dilutions/RAW/'
-parafile="S"
+parafile="SS"
 
 # load the parameters for each fit from the pickle file
 # there are 6 parameter objects per color 3dG, 3dGt, n, nt, nr, ntr
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_all_final.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final2.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
         parameters['R'].append(pickle.load(paraPickleFile))
 
-logfile=open(datadir_all+'fit_dilutions_all_final.log',"w")
+logfile=open(datadir_all+'fit_dilutions_all_final2.log',"w")
 parameterDataFrame=pd.DataFrame({})
 datadict={}
 
@@ -208,6 +208,6 @@ for color in parameters:
     # save the delta time for each color just in case
     datadict['t'+color]=t    
 
-parameterDataFrame.to_csv(datadir_all+"fit_dilutions_final.csv")
+parameterDataFrame.to_csv(datadir_all+"fit_dilutions_final2.csv")
 dataFits=pd.DataFrame(datadict)
-dataFits.to_csv(datadir_all+'fit_dilutions_plots_final.csv')
+dataFits.to_csv(datadir_all+'fit_dilutions_plots_final2.csv')

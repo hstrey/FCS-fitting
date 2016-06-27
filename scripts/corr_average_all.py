@@ -29,14 +29,14 @@ def makeResultDataFrame(modelfit,dataset={}):
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
 datadir_all='../data/dilutions/RAW/'
-parafile="S"
+parafile="SS"
 
 data3dG=pd.read_csv(datadir_all+'gaussian_'+parafile+'.csv')
 data3dGT=pd.read_csv(datadir_all+'gaussian_triplet_'+parafile+'.csv')
 dataN=pd.read_csv(datadir_all+'Numerical_'+parafile+'.csv')
 dataNT=pd.read_csv(datadir_all+'NumericalTriplet_'+parafile+'.csv')
 
-paraPickleFile=open(datadir+'corr_average_all_final.pkl',"w")
+paraPickleFile=open(datadir+'corr_average_all_final2.pkl',"w")
 
 for color in ['B','R']:
     data_list=[]
