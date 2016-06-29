@@ -86,7 +86,7 @@ for color in parameters:
         # save data, stderr and fitnoise just in case
         datadict['data_'+filename+'_'+color]=data
         datadict['stderr_'+filename+'_'+color]=stderr
-        datadict['fitstd_'+filename+'_'+color]=fitNoise
+        datadict['fitstderr_'+filename+'_'+color]=fitNoise
         
         fit=parameters[color][0] # Gaussian fit pickle
 
@@ -103,6 +103,7 @@ for color in parameters:
         parameterDataFrame=parameterDataFrame.append(datasetG,ignore_index=True)
         
         datadict['fitdata_fcs_'+filename+'_'+color]=resultG.best_fit
+        datadict['fitres_fcs_'+filename+'_'+color]=resultG.residual
 
         fit=parameters[color][1] # Gaussian fit triplet pickle
 
@@ -121,6 +122,7 @@ for color in parameters:
         parameterDataFrame=parameterDataFrame.append(datasetS,ignore_index=True)
 
         datadict['fitdata_fcst_'+filename+'_'+color]=resultS.best_fit
+        datadict['fitres_fcst_'+filename+'_'+color]=resultS.residual
 
         fit=parameters[color][2] # Numerical fit pickle
         
@@ -141,6 +143,7 @@ for color in parameters:
         parameterDataFrame=parameterDataFrame.append(datasetN,ignore_index=True)
         
         datadict['fitdata_n_'+filename+'_'+color]=resultN.best_fit
+        datadict['fitres_n_'+filename+'_'+color]=resultN.residual
 
         fit=parameters[color][4] # Numerical fit triplet pickle
         
@@ -163,6 +166,7 @@ for color in parameters:
         parameterDataFrame=parameterDataFrame.append(datasetN,ignore_index=True)
         
         datadict['fitdata_nt_'+filename+'_'+color]=resultN.best_fit
+        datadict['fitres_nt_'+filename+'_'+color]=resultN.residual
 
         fit=parameters[color][3] # NumericalR fit pickle
         
@@ -183,6 +187,7 @@ for color in parameters:
         parameterDataFrame=parameterDataFrame.append(datasetN,ignore_index=True)
         
         datadict['fitdata_nr_'+filename+'_'+color]=resultN.best_fit
+        datadict['fitres_nr_'+filename+'_'+color]=resultN.residual
 
         fit=parameters[color][5] # NumericalR fit triplet pickle
         
@@ -203,7 +208,9 @@ for color in parameters:
         logfile.write(resultN.fit_report()+'\n')
         datasetN=makeResultDataFrame(resultN,{'fit':'fcs_ntr','file':filename,'color':color,'chisq':resultN.chisqr,'redchi':resultN.redchi})
         parameterDataFrame=parameterDataFrame.append(datasetN,ignore_index=True)
+
         datadict['fitdata_ntr_'+filename+'_'+color]=resultN.best_fit
+        datadict['fitres_ntr_' + filename + '_' + color] = resultN.residual
 
     # save the delta time for each color just in case
     datadict['t'+color]=t    
