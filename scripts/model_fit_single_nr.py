@@ -11,6 +11,7 @@ from fcsfit.realistic_reversed import modelFCS_n, modelFCS_nt, vol1dict, vol2dic
 from fcsfit.common import k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
+    params={}
     if isinstance(modelfit, Parameters):
         params = modelfit
     if hasattr(modelfit, 'params'):

@@ -9,6 +9,7 @@ import sys
 from fcsfit.FCS_Models_reversed import modelFCS_t, modelFCS, modelFCS_nr, modelFCS_ntr, modelFCS_n, modelFCS_nt,vol1, vol2, g_t, g_n, g, g_nt,k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
+    params={}
     if isinstance(modelfit, Parameters):
         params = modelfit
     if hasattr(modelfit, 'params'):

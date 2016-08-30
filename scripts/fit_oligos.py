@@ -77,8 +77,8 @@ datadict['oligoBR_stdfit']=stdBR_fit
 
 b=Parameters()
 b.add('D',value=70.0,vary=True)
-b.add('C',value=2.5,vary=True)
-b.add('delta_z',value=1.0,vary=True)
+b.add('C',value=2.3,vary=True)
+b.add('delta_z',value=3.9,vary=True)
 
 # if triplet
 if bluePick==1 or bluePick==4 or bluePick==5:
@@ -107,6 +107,9 @@ if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
     gfit_all=g_oligo_all(out.params,t)
+    datadict['fitB']=gfit_all[0]
+    datadict['fitR']=gfit_all[1]
+    datadict['fitBR']=gfit_all[2]
 
 elif (5>=bluePick>=2) and (5>=redPick>=2):
     #combine parameters from blue and red into one

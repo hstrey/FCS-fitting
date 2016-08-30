@@ -9,6 +9,7 @@ from fcsfit.gaussian import g_all,g_all_t
 from fcsfit.realistic_reversed import g_all_n,g_all_nt,g_all_nr,g_all_ntr,vol1dict, vol2dict,k_real
 
 def makeResultDataFrame(modelfit,dataset={}):
+    params={}
     if isinstance(modelfit, Parameters):
         params = modelfit
     if hasattr(modelfit, 'params'):
