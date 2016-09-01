@@ -18,16 +18,18 @@ if not path in sys.path:
     sys.path.insert(1, path)
 del path
 
-from fcsfit.FCS_Models_reversed import vol1, vol2, vol2c, vol2f,k_real
+from fcsfit.common import k_real
+from fcsfit.realistic_reversed import vol1, vol2
+from fcsfit.realistic_rev_oligo import vol2c, vol2f
 
 #defines the location of the data
-datadir='../data/dilutions/SOME/'
-datadir_all='../data/dilutions/'
+datadir='../../data/dilutions/SOME/'
+datadir_all='../../data/dilutions/'
 
 # load the parameters for each fit from the pickle file
 # there are 6 parameter objects per color 3dG, 3dGt, n, nt, nr, ntr
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_rev2.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final2.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
