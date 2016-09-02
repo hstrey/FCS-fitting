@@ -88,7 +88,7 @@ else:
     b.add('F_b',0.0,vary=False)
     b.add('tf_b',1e-6,vary=False)
 
-if bluePick==1 or redPick==4 or redPick==5:
+if redPick==1 or redPick==4 or redPick==5:
     b.add('F_r',value=bRed['F'].value,min=0.0,max=0.5,vary=False)
     b.add('tf_r',value=bRed['tf'].value,min=1e-9,max=1e-4,vary=False)
 else:

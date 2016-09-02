@@ -3,6 +3,8 @@
 Created on Thu Mar 12 10:57:09 2015
 
 @author: hstrey
+
+Fits auto- and cross-correlation functions using established MDF parameters for different MDF models
 """
 
 import numpy as np
@@ -22,13 +24,16 @@ datadir_all='../data/dilutions/RAW/'
 oligodir='../data/oligos/'
 datafile='OL100ace'
 
+zValueGauss=3.99
+zValueDA=1.14
+
 datadict={}
 
 corrData=pd.read_csv(oligodir+datafile+'.csv')
 
 # load the parameters for each fit from the pickle file
 parameters=collections.defaultdict(list)
-with open(datadir+'corr_average_all_final.pkl',"r") as paraPickleFile:
+with open(datadir+'corr_average_all_final2.pkl',"r") as paraPickleFile:
     for i in range(6):
         parameters['B'].append(pickle.load(paraPickleFile))
     for i in range(6):
@@ -76,11 +81,10 @@ datadict['oligoR_stdfit']=stdR_fit
 datadict['oligoBR_stdfit']=stdBR_fit
 
 b=Parameters()
-b.add('D',value=69.2,vary=False)
-b.add('Cb',value=2.5,vary=True)
-b.add('Cr',value=2.5,vary=True)
-b.add('Cc',value=2.5,vary=True)
-b.add('delta_z',value=1.0,vary=True)
+b.add('D',value=65.9,vary=True)
+b.add('Cb',value=2.35,vary=True)
+b.add('Cr',expr='Cb')
+b.add('Cc',value=7.0,vary=True)
 
 # if triplet
 if bluePick==1 or bluePick==4 or bluePick==5:
@@ -90,7 +94,7 @@ else:
     b.add('F_b',0.0,vary=False)
     b.add('tf_b',1e-6,vary=False)
 
-if bluePick==1 or redPick==4 or redPick==5:
+if redPick==1 or redPick==4 or redPick==5:
     b.add('F_r',value=bRed['F'].value,min=0.0,max=0.5,vary=False)
     b.add('tf_r',value=bRed['tf'].value,min=1e-9,max=1e-4,vary=False)
 else:
@@ -104,11 +108,15 @@ if (bluePick==1 or bluePick==0) and (redPick==1 or redPick==0):
     b.add('wz_r',value=bRed['wz'].value,vary=False)
     b.add('wxy_b',value=bBlue['wxy'].value,vary=False)
     b.add('wxy_r',value=bRed['wxy'].value,vary=False)
+    b.add('delta_z', value=0.0, vary=False)
 
     out=minimize(g_oligo_all_c,b,args=(t,data,dataStd_fit))
     print fit_report(out)
     logfile.write(fit_report(out)+'\n')
     gfit_all=g_oligo_all_c(b,t)
+    datadict['fitB']=gfit_all[0]
+    datadict['fitR']=gfit_all[1]
+    datadict['fitBR']=gfit_all[2]
 
 elif (5>=bluePick>=2) and (5>=redPick>=2):
     #combine parameters from blue and red into one
@@ -123,6 +131,7 @@ elif (5>=bluePick>=2) and (5>=redPick>=2):
     b.add('lambdaex_r',value=bRed['lambdaex'].value,vary=False)
     b.add('lambdaem_r',value=bRed['lambdaem'].value,vary=False)
     b.add('n',value=bBlue['n'].value,vary=False)
+    b.add('delta_z', value=zValueDA, vary=False)
     
     if (bluePick==3 or bluePick==5):
         out=minimize(g_oligo_all_nc,b,args=(t,data,dataStd_fit,k_real))
