@@ -77,6 +77,9 @@ vol_f=v1b*v1r/v2f
 datadict['vol_c']=vol_c
 datadict['vol_f']=vol_f
 
+# here we just print the Veff for the DA approximation
+print("effective Volume DA: ",vol2c(w1,w2,a1,a2,r1,r2,lambdaex1,lambdaem1,lambdaex2,lambdaem2,n,1.14))
+
 bBlue=parameters['B'][4]
 bRed=parameters['R'][4]
 

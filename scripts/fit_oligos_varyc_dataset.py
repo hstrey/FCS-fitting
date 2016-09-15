@@ -18,9 +18,8 @@ from fcsfit.gaussian_oligo import g_oligo_all_c
 
 #defines the location of the data
 datadir='../data/dilutions/SOME/'
-datadir_all='../data/dilutions/'
+datadir_all='../data/oligos/'
 oligodir='../data/oligos/final oligo data/'
-datafile='OL050a'
 
 # load the parameters for each fit from the pickle file
 parameters=collections.defaultdict(list)
@@ -48,6 +47,13 @@ bRed=parameters['R'][redPick]
 oligo_file_list = os.listdir(oligodir)
 logfile=open(datadir_all+'oligo_varyc_'+str(bluePick)+'_'+str(redPick)+'.log',"w")
 
+cb_list=[]
+cr_list=[]
+cbr_list=[]
+cb_std_list=[]
+cr_std_list=[]
+cbr_std_list=[]
+
 for oligo_file in oligo_file_list:
 
     corrData=pd.read_csv(oligodir+oligo_file)
@@ -61,11 +67,11 @@ for oligo_file in oligo_file_list:
     dataStd=np.array([corrData['stdB'],corrData['stdR'],corrData['stdBR']])
 
     b=Parameters()
-    b.add('D',value=70.0,vary=True)
+    b.add('D',value=68.9,vary=False)
     b.add('Cb',value=2.0,vary=True)
     b.add('Cr',value=2.0,vary=True)
     b.add('Cc',value=2.0,vary=True)
-    b.add('delta_z',value=3.99,vary=False)
+    b.add('delta_z',value=1.14,vary=False)
 
     # if triplet
     if bluePick==1 or bluePick==4 or bluePick==5:
@@ -117,8 +123,24 @@ for oligo_file in oligo_file_list:
         logfile.write(fit_report(out)+'\n')
 
         gfit_all=g_oligo_all_nc(out.params,t)
+    outpar=out.params
+    cb_list.append(outpar['Cb'].value)
+    cr_list.append(outpar['Cr'].value)
+    cbr_list.append(outpar['Cc'].value)
+    cb_std_list.append(outpar['Cb'].stderr)
+    cr_std_list.append(outpar['Cr'].stderr)
+    cbr_std_list.append(outpar['Cc'].stderr)
 
 logfile.close()
+
+datadict=dict(cb=cb_list,
+              cr=cr_list,
+              cbr=cbr_list,
+              cb_std=cb_std_list,
+              cr_std=cr_std_list,
+              cbr_std=cbr_std_list)
+df=pd.DataFrame(datadict)
+df.to_csv(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.csv',index=False)
 
 # plt.figure()
 #
