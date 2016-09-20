@@ -20,7 +20,7 @@ from fcsfit.realistic_rev_oligo import g_oligo_all_n
 datadir='../data/dilutions/SOME/'
 datadir_all='../data/dilutions/RAW/'
 oligodir='../data/oligos/'
-datafile='OL100ace'
+datafile='OL100a'
 
 datadict={}
 

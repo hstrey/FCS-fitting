@@ -64,13 +64,19 @@ for filestart in groups:
         corr_arrayr.append(corrfcts['corrCD'])
         corr_arraybr.extend([corrfcts['corrAD'],corrfcts['corrBC']])
             
-    corr_meanb = np.mean(corr_arrayb,axis=0)
-    corr_meanr = np.mean(corr_arrayr,axis=0)
-    corr_meanbr = np.mean(corr_arraybr,axis=0)
-    corr_stdb = np.std(corr_arrayb,axis=0)
-    corr_stdr = np.std(corr_arrayr,axis=0)
-    corr_stdbr = np.std(corr_arraybr,axis=0)
-    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanb, 'stdB':corr_stdb,'meanR':corr_meanr, 'stdR':corr_stdr,'meanBR':corr_meanbr, 'stdBR':corr_stdbr}
+    corr_meanB = np.mean(corr_arrayb,axis=0)
+    corr_meanR = np.mean(corr_arrayr,axis=0)
+    corr_meanBR = np.mean(corr_arraybr,axis=0)
+    corr_stdB = np.std(corr_arrayb,axis=0)
+    corr_stdR = np.std(corr_arrayr,axis=0)
+    corr_stdBR = np.std(corr_arraybr,axis=0)
+
+    corr_stderrB = corr_stdB/np.sqrt(corr_arrayb.shape[0]) # calculate stderr
+    corr_stderrR = corr_stdR/np.sqrt(corr_arrayr.shape[0]) # calculate stderr
+    corr_stderrBR = corr_stdBR/np.sqrt(corr_arrayrb.shape[0]) # calculate stderr
+
+    d={'delta_t':corrfcts['delta_t'], 'meanB':corr_meanB, 'stdB':corr_stdB,'stderrB':corr_stderrB,'meanR':corr_meanR, 'stdR':corr_stdR,'stderrR':corr_stderrR}
     df=pd.DataFrame(d)
+
     print df
     df.to_csv(datadir+filestart+'.csv',index=False)

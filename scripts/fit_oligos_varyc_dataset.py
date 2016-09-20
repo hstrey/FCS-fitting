@@ -67,11 +67,11 @@ for oligo_file in oligo_file_list:
     dataStd=np.array([corrData['stdB'],corrData['stdR'],corrData['stdBR']])
 
     b=Parameters()
-    b.add('D',value=68.9,vary=False)
+    b.add('D',value=70.2240537,vary=False)
     b.add('Cb',value=2.0,vary=True)
     b.add('Cr',value=2.0,vary=True)
     b.add('Cc',value=2.0,vary=True)
-    b.add('delta_z',value=1.14,vary=False)
+    b.add('delta_z',value=1.17836037,vary=False)
 
     # if triplet
     if bluePick==1 or bluePick==4 or bluePick==5:
