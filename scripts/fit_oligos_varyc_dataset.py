@@ -140,7 +140,7 @@ datadict=dict(cb=cb_list,
               cr_std=cr_std_list,
               cbr_std=cbr_std_list)
 df=pd.DataFrame(datadict)
-df.to_csv(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'.csv',index=False)
+df.to_csv(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'_a.csv',index=False)
 
 # plt.figure()
 #
