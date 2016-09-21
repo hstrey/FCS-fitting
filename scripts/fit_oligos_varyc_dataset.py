@@ -11,7 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
 import collections
-import os
+import glob
 
 from fcsfit.realistic_rev_oligo import g_oligo_all_nc,k_real
 from fcsfit.gaussian_oligo import g_oligo_all_c
@@ -44,7 +44,7 @@ bBlue=parameters['B'][bluePick]
 redPick = int(raw_input("Pick calibration parameter set for Red channel: "))
 bRed=parameters['R'][redPick]
 
-oligo_file_list = os.listdir(oligodir)
+oligo_file_list = glob.glob(oligodir+"*")
 logfile=open(datadir_all+'oligo_varyc_'+str(bluePick)+'_'+str(redPick)+'.log',"w")
 
 cb_list=[]
@@ -54,9 +54,11 @@ cb_std_list=[]
 cr_std_list=[]
 cbr_std_list=[]
 
+print(oligo_file_list)
+
 for oligo_file in oligo_file_list:
 
-    corrData=pd.read_csv(oligodir+oligo_file)
+    corrData=pd.read_csv(oligo_file)
 
     #data set for fitting mean square displacements
     corrData=corrData[corrData['delta_t']>=1e-6]
@@ -67,11 +69,11 @@ for oligo_file in oligo_file_list:
     dataStd=np.array([corrData['stdB'],corrData['stdR'],corrData['stdBR']])
 
     b=Parameters()
-    b.add('D',value=70.2240537,vary=False)
-    b.add('Cb',value=2.0,vary=True)
-    b.add('Cr',value=2.0,vary=True)
+    b.add('D',value=70.2,vary=False)
+    b.add('Cb',value=2.3,vary=True)
+    b.add('Cr',expr="Cb")
     b.add('Cc',value=2.0,vary=True)
-    b.add('delta_z',value=1.17836037,vary=False)
+    b.add('delta_z',value=1.18,vary=False)
 
     # if triplet
     if bluePick==1 or bluePick==4 or bluePick==5:
@@ -140,7 +142,7 @@ datadict=dict(cb=cb_list,
               cr_std=cr_std_list,
               cbr_std=cbr_std_list)
 df=pd.DataFrame(datadict)
-df.to_csv(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'_a.csv',index=False)
+df.to_csv(datadir_all+'oligo_'+str(bluePick)+'_'+str(redPick)+'_same_a.csv',index=False)
 
 # plt.figure()
 #
